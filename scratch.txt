@@ -1,0 +1,26 @@
+Ranger: Marksman vs. Skirmisher
+Marksman (precision/lethality — commit to the hit, make it count)
+
+Minor: flat +crit chance.
+Mid: on crit, % chance to gain a stacking "Focus" buff — a few stacks of bonus crit damage on your next attacks, decaying after a couple turns if unused.
+Capstone: crits against a target still at full HP deal bonus flat damage — rewards opening an engagement decisively, a generic "clean opening shot" payoff rather than anything wired to a specific skill.
+
+Skirmisher (kiting/positioning — distance is your defense)
+
+Minor: flat +damage or +accuracy while at range from your target (using actual grid distance, since positioning is real in your system — this leans into Ranger's identity without touching Disengage directly).
+Mid: stepping away from an adjacent enemy (any movement, not a named skill) grants a brief evasion bump — a general "disengaging is inherently safer" trigger.
+Capstone: a stacking buff that builds per tile of distance from the nearest enemy (capped), granting bonus damage or crit chance — rewards a genuine kiting playstyle broadly, not any one movement tool.
+
+Marksman/Skirmisher mirrors your Warrior split well: one is "commit and hit hard," the other is "stay slippery and let positioning do the work" — same shape as Aggression/Endurance's risk-vs-sustain contrast.
+Mage: Destruction vs. Affliction
+Destruction (burst — raw damage, no patience for damage-over-time)
+
+Minor: flat +% damage dealt.
+Mid: on cast, % chance to gain a "Power Surge" buff — bonus damage on your next spell, consumed on use.
+Capstone: Spell Echo — % chance any spell triggers a second time at reduced effect. This is the standout "why pick Destruction" payoff, same tier-weight as Warrior's lifesteal or Cleric's blind.
+
+Affliction (attrition — the curse that lingers and compounds)
+
+Minor: flat +% damage or +duration on DoTs you apply.
+Mid: reapplying a DoT to an already-afflicted target has a % chance to refresh with a bonus stack instead of just resetting duration.
+Capstone: afflicted (currently DoT-ticking) targets take a % increased damage from all sources — mirrors the "status hook that anyone can benefit from" shape of Cleric's blind and Rogue's mark, without being a copy of either (this one's gated on DoT-presence rather than HP threshold or being-hit).

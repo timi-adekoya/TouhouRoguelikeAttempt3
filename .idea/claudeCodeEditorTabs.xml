@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClaudeCodeEditorTabs">
+    <option name="activeSessionId" value="435a0c82-3fad-48f8-b7fa-ba1559993d07" />
+    <option name="openSessionIds">
+      <list>
+        <option value="c66d3ec2-3912-47e2-aa57-612a48088c50" />
+        <option value="f0925beb-5438-4127-b3c0-1b0ed2bd6ade" />
+        <option value="5bfe3f2f-6cef-4052-bd2b-b0f0cf40b2af" />
+        <option value="9ec36db7-5833-4701-aaff-ac854269221a" />
+        <option value="cc4616f8-9574-4925-b0c6-085ce48458a7" />
+        <option value="a908c4cd-5034-4a7d-bbdb-b9aa4d20c2c1" />
+        <option value="435a0c82-3fad-48f8-b7fa-ba1559993d07" />
+      </list>
+    </option>
+    <option name="sessionPaths">
+      <map>
+        <entry key="435a0c82-3fad-48f8-b7fa-ba1559993d07" value="/sessions/new" />
+        <entry key="5bfe3f2f-6cef-4052-bd2b-b0f0cf40b2af" value="/settings/general" />
+        <entry key="9ec36db7-5833-4701-aaff-ac854269221a" value="/sessions/1173988b-22ab-45f3-bbd8-edec82ccce8b" />
+        <entry key="a908c4cd-5034-4a7d-bbdb-b9aa4d20c2c1" value="/sessions/new" />
+        <entry key="c66d3ec2-3912-47e2-aa57-612a48088c50" value="/sessions/465c4feb-8436-46f6-b610-27e92651a424" />
+        <entry key="cc4616f8-9574-4925-b0c6-085ce48458a7" value="/sessions/new" />
+        <entry key="f0925beb-5438-4127-b3c0-1b0ed2bd6ade" value="/switch-account" />
+      </map>
+    </option>
+    <option name="sessionTitles">
+      <map>
+        <entry key="435a0c82-3fad-48f8-b7fa-ba1559993d07" value="Claude Code" />
+        <entry key="5bfe3f2f-6cef-4052-bd2b-b0f0cf40b2af" value="Settings" />
+        <entry key="9ec36db7-5833-4701-aaff-ac854269221a" value="hello?" />
+        <entry key="a908c4cd-5034-4a7d-bbdb-b9aa4d20c2c1" value="Claude Code" />
+        <entry key="c66d3ec2-3912-47e2-aa57-612a48088c50" value="Hello we're going to finish the class skill trees" />
+        <entry key="cc4616f8-9574-4925-b0c6-085ce48458a7" value="Claude Code" />
+        <entry key="f0925beb-5438-4127-b3c0-1b0ed2bd6ade" value="It seems that regrettably, our past chats have bee" />
+      </map>
+    </option>
+  </component>
+</project>

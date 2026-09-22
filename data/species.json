@@ -1,0 +1,167 @@
+[
+  {
+    "species_id": "human",
+    "name": "Human",
+    "tree": [
+      {
+        "node_id": "human_1",
+        "name": "Adaptable Spirit",
+        "requires_level": 1,
+        "grants_skills": ["regeneration", "spirit_boost"]
+      },
+      {
+        "node_id": "human_3",
+        "name": "Hardened Body",
+        "requires_level": 3,
+        "prereqs": ["human_1"],
+        "grants_skills": ["vitality_boost"]
+      },
+      {
+        "node_id": "human_5",
+        "name": "Practiced Hands",
+        "requires_level": 5,
+        "prereqs": ["human_3"],
+        "grants_skills": ["technique_boost"]
+      }
+    ]
+  },
+  {
+    "species_id": "fairy",
+    "name": "Fairy",
+    "tree": [
+      {
+        "node_id": "fairy_1",
+        "name": "Danmaku Instinct",
+        "requires_level": 1,
+        "grants_skills": ["magic_bullet", "regeneration"]
+      },
+      {
+        "node_id": "fairy_3",
+        "name": "Mischievous Spirit",
+        "requires_level": 3,
+        "prereqs": ["fairy_1"],
+        "grants_skills": ["spirit_boost"]
+      },
+      {
+        "node_id": "fairy_5",
+        "name": "Flighty Wings",
+        "requires_level": 5,
+        "prereqs": ["fairy_3"],
+        "grants_skills": ["speed_boost"]
+      }
+    ]
+  },
+  {
+    "species_id": "sunflower_fairy",
+    "name": "Sunflower Fairy",
+    "description": "A bulkier, tougher fairy variant that trades a normal fairy's speed for power and staying power — doesn't dart around, just shoots a lot more and takes a lot more to put down.",
+    "tree": [
+      {
+        "node_id": "sunflower_1",
+        "name": "Sunflower Barrage",
+        "requires_level": 1,
+        "grants_skills": ["sunflower_barrage", "regeneration"]
+      },
+      {
+        "node_id": "sunflower_3",
+        "name": "Blooming Spirit",
+        "requires_level": 3,
+        "prereqs": ["sunflower_1"],
+        "grants_skills": ["spirit_boost"]
+      },
+      {
+        "node_id": "sunflower_5",
+        "name": "Deep Roots",
+        "requires_level": 5,
+        "prereqs": ["sunflower_3"],
+        "grants_skills": ["vitality_boost"]
+      }
+    ]
+  },
+  {
+    "species_id": "youkai",
+    "name": "Youkai",
+    "description": "A generic supernatural species for characters who don't share their kind with anyone else in the cast yet — broad, flavor-neutral passives only. Character-specific abilities and spellcards belong in each youkai's own innate tree, not here, so this stays usable no matter how different two youkai turn out to be.",
+    "tree": [
+      {
+        "node_id": "youkai_1",
+        "name": "Supernatural Spirit",
+        "requires_level": 1,
+        "grants_skills": ["regeneration", "spirit_boost"]
+      },
+      {
+        "node_id": "youkai_3",
+        "name": "Youkai Strength",
+        "requires_level": 3,
+        "prereqs": ["youkai_1"],
+        "grants_skills": ["power_boost"]
+      },
+      {
+        "node_id": "youkai_5",
+        "name": "Supernatural Presence",
+        "requires_level": 5,
+        "prereqs": ["youkai_3"],
+        "grants_skills": ["presence_boost"]
+      }
+    ]
+  },
+  {
+    "species_id": "kedama",
+    "name": "Kedama",
+    "description": "A small, fast hairball youkai of the Underworld. Weak alone, but quick and tenacious.",
+    "tree": [
+      {
+        "node_id": "kedama_1",
+        "name": "Quick Bounder",
+        "requires_level": 1,
+        "grants_skills": ["kedama_swiftness"]
+      },
+      {
+        "node_id": "kedama_5",
+        "name": "Danmaku Instinct",
+        "requires_level": 5,
+        "prereqs": ["kedama_1"],
+        "grants_skills": ["magic_bullet"]
+      }
+    ]
+  },
+  {
+    "species_id": "goblin",
+    "name": "Goblin",
+    "tree": [
+      {
+        "node_id": "goblin_1",
+        "name": "Thick Hide",
+        "requires_level": 1,
+        "grants_skills": ["goblin_hide"]
+      },
+      {
+        "node_id": "goblin_5",
+        "name": "Brutish Strength",
+        "requires_level": 5,
+        "prereqs": ["goblin_1"],
+        "grants_skills": ["goblin_might"]
+      }
+    ]
+  },
+  {
+    "species_id": "wheel_ghost",
+    "name": "Wheel Ghost",
+    "description": "A restless spirit bound to a great spinning wheel, common to the Underworld. Rarely stops moving.",
+    "tree": [
+      {
+        "node_id": "wheel_ghost_1",
+        "name": "Rolling Momentum",
+        "requires_level": 1,
+        "grants_skills": ["wheel_ghost_evasion"]
+      },
+      {
+        "node_id": "wheel_ghost_5",
+        "name": "Danmaku Instinct",
+        "requires_level": 5,
+        "prereqs": ["wheel_ghost_1"],
+        "grants_skills": ["magic_bullet"]
+      }
+    ]
+  }
+]

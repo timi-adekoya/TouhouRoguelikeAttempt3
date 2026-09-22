@@ -1,0 +1,403 @@
+[
+  {
+    "innate_id": "reimu",
+    "species_id": "human",
+    "manual": true,
+    "points_per_level": 1,
+    "tree": [
+      {
+        "node_id": "reimu_1",
+        "name": "Blood of the Hakurei",
+        "requires_level": 1,
+        "cost": 0,
+        "grants_skills": [
+          "hakurei_intuition"
+        ]
+      },
+      {
+        "node_id": "reimu_2",
+        "name": "Faith Attunement",
+        "requires_level": 2,
+        "cost": 1,
+        "prereqs": [
+          "reimu_1"
+        ],
+        "grants_skills": [
+          "faith_attunement"
+        ]
+      },
+      {
+        "node_id": "reimu_3",
+        "name": "Youkai Buster",
+        "requires_level": 3,
+        "cost": 1,
+        "prereqs": [
+          "reimu_2"
+        ],
+        "grants_skills": [
+          "youkai_buster"
+        ]
+      },
+      {
+        "node_id": "reimu_4",
+        "name": "Purification Ofuda",
+        "requires_level": 4,
+        "cost": 1,
+        "prereqs": [
+          "reimu_3"
+        ],
+        "grants_skills": [
+          "purification_ofuda"
+        ]
+      },
+      {
+        "node_id": "reimu_5",
+        "name": "Persuasion Needles",
+        "requires_level": 4,
+        "cost": 1,
+        "prereqs": [
+          "reimu_3"
+        ],
+        "grants_skills": [
+          "persuasion_needles"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "marisa",
+    "species_id": "human",
+    "manual": true,
+    "points_per_level": 1,
+    "tree": [
+      {
+        "node_id": "marisa_1",
+        "name": "Ordinary Magician",
+        "requires_level": 1,
+        "cost": 0,
+        "grants_skills": [
+          "magicians_ambition"
+        ]
+      },
+      {
+        "node_id": "marisa_2",
+        "name": "Toxic Fortitude",
+        "requires_level": 2,
+        "cost": 1,
+        "prereqs": [
+          "marisa_1"
+        ],
+        "grants_skills": [
+          "toxic_fortitude"
+        ]
+      },
+      {
+        "node_id": "marisa_3",
+        "name": "Arcane Diligence",
+        "requires_level": 3,
+        "cost": 1,
+        "prereqs": [
+          "marisa_2"
+        ],
+        "grants_skills": [
+          "arcane_diligence"
+        ]
+      },
+      {
+        "node_id": "marisa_4",
+        "name": "Stream Laser",
+        "requires_level": 4,
+        "cost": 1,
+        "prereqs": [
+          "marisa_3"
+        ],
+        "grants_skills": [
+          "stream_laser"
+        ]
+      },
+      {
+        "node_id": "marisa_5",
+        "name": "Stardust Missile",
+        "requires_level": 4,
+        "cost": 1,
+        "prereqs": [
+          "marisa_3"
+        ],
+        "grants_skills": [
+          "stardust_missile"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_red",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_red_1",
+        "name": "Dress of Flame",
+        "requires_level": 1,
+        "grants_skills": [
+          "flame_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_blue",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_blue_1",
+        "name": "Dress of Frost",
+        "requires_level": 1,
+        "grants_skills": [
+          "frost_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_green",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_green_1",
+        "name": "Dress of Verdure",
+        "requires_level": 1,
+        "grants_skills": [
+          "verdant_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_pink",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_pink_1",
+        "name": "Dress of Venom",
+        "requires_level": 1,
+        "grants_skills": [
+          "toxic_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_white",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_white_1",
+        "name": "Dress of Light",
+        "requires_level": 1,
+        "grants_skills": [
+          "light_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_yellow",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_yellow_1",
+        "name": "Dress of Lightning",
+        "requires_level": 1,
+        "grants_skills": [
+          "shock_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_black",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_black_1",
+        "name": "Dress of Shadow",
+        "requires_level": 1,
+        "grants_skills": [
+          "shadow_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "fairy_purple",
+    "species_id": "fairy",
+    "tree": [
+      {
+        "node_id": "fairy_purple_1",
+        "name": "Dress of the Void",
+        "requires_level": 1,
+        "grants_skills": [
+          "void_bullet"
+        ]
+      }
+    ]
+  },
+  {
+    "innate_id": "kisume",
+    "species_id": "youkai",
+    "tree": [
+      {
+        "node_id": "kisume_1",
+        "name": "Sunken Malice",
+        "cost": 0,
+        "requires_level": 1,
+        "grants_skills": [
+          "sunken_malice"
+        ]
+      },
+      {
+        "node_id": "kisume_2",
+        "name": "Cinderproof Husk",
+        "requires_level": 2,
+        "cost": 1,
+        "prereqs": [
+          "kisume_1"
+        ],
+        "grants_skills": [
+          "cinderproof_husk"
+        ]
+      },
+      {
+        "node_id": "kisume_3",
+        "name": "Kindled Fury",
+        "requires_level": 3,
+        "cost": 1,
+        "prereqs": [
+          "kisume_2"
+        ],
+        "grants_skills": [
+          "kindled_fury"
+        ]
+      },
+      {
+        "node_id": "kisume_5",
+        "name": "Cinder Claw",
+        "requires_level": 5,
+        "cost": 2,
+        "prereqs": [
+          "kisume_3"
+        ],
+        "grants_skills": [
+          "cinder_claw"
+        ]
+      }
+    ],
+    "manual": true,
+    "points_per_level": 1
+  },
+  {
+    "innate_id": "yamame",
+    "species_id": "youkai",
+    "tree": [
+      {
+        "node_id": "yamame_1",
+        "name": "Predator's Instinct",
+        "requires_level": 1,
+        "cost": 0,
+        "grants_skills": [
+          "predators_instinct"
+        ]
+      },
+      {
+        "node_id": "yamame_2",
+        "name": "Chitinous Hide",
+        "requires_level": 2,
+        "cost": 1,
+        "prereqs": [
+          "yamame_1"
+        ],
+        "grants_skills": [
+          "chitinous_hide"
+        ]
+      },
+      {
+        "node_id": "yamame_3",
+        "name": "Lingering Venom",
+        "requires_level": 3,
+        "cost": 1,
+        "prereqs": [
+          "yamame_2"
+        ],
+        "grants_skills": [
+          "lingering_venom"
+        ]
+      },
+      {
+        "node_id": "yamame_5",
+        "name": "Venom Shot",
+        "requires_level": 5,
+        "cost": 2,
+        "prereqs": [
+          "yamame_3"
+        ],
+        "grants_skills": [
+          "venom_shot"
+        ]
+      }
+    ],
+    "manual": true,
+    "points_per_level": 1
+  },
+  {
+    "innate_id": "parsee",
+    "species_id": "youkai",
+    "tree": [
+      {
+        "node_id": "parsee_1",
+        "name": "Simmering Envy",
+        "requires_level": 1,
+        "cost": 0,
+        "grants_skills": [
+          "simmering_envy"
+        ]
+      },
+      {
+        "node_id": "parsee_2",
+        "name": "Loner",
+        "requires_level": 2,
+        "cost": 1,
+        "prereqs": [
+          "parsee_1"
+        ],
+        "grants_skills": [
+          "loner"
+        ]
+      },
+      {
+        "node_id": "parsee_3",
+        "name": "Solitary Malice",
+        "requires_level": 3,
+        "cost": 1,
+        "prereqs": [
+          "parsee_2"
+        ],
+        "grants_skills": [
+          "solitary_malice"
+        ]
+      },
+      {
+        "node_id": "parsee_5",
+        "name": "Envious Glare",
+        "requires_level": 5,
+        "cost": 2,
+        "prereqs": [
+          "parsee_3"
+        ],
+        "grants_skills": [
+          "envious_glare"
+        ]
+      }
+    ],
+    "manual": true,
+    "points_per_level": 1
+  }
+]

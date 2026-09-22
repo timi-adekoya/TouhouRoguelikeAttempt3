@@ -1,0 +1,233 @@
+[
+  {
+    "monster_id": "fairy",
+    "name": "Fairy",
+    "char": "f",
+    "color": [
+      255,
+      150,
+      220
+    ],
+    "species_id": "fairy",
+    "ai": "fsm",
+    "base_hp": 8,
+    "base_mp": 6,
+    "base_sp": 5,
+    "attributes": {
+      "spirit": 4
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      2,
+      6
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "fairy_red",
+    "name": "Red-Dress Fairy",
+    "char": "f",
+    "color": [
+      220,
+      60,
+      60
+    ],
+    "species_id": "fairy",
+    "innate_id": "fairy_red",
+    "ai": "fsm",
+    "base_hp": 8,
+    "base_mp": 6,
+    "base_sp": 5,
+    "attributes": {
+      "spirit": 4,
+      "power": 1
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      2,
+      6
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "fairy_blue",
+    "name": "Blue-Dress Fairy",
+    "char": "f",
+    "color": [
+      80,
+      140,
+      255
+    ],
+    "species_id": "fairy",
+    "innate_id": "fairy_blue",
+    "ai": "fsm",
+    "base_hp": 8,
+    "base_mp": 6,
+    "base_sp": 5,
+    "attributes": {
+      "spirit": 4,
+      "technique": 1
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      2,
+      6
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "fairy_green",
+    "name": "Green-Dress Fairy",
+    "char": "f",
+    "color": [
+      100,
+      220,
+      100
+    ],
+    "species_id": "fairy",
+    "innate_id": "fairy_green",
+    "ai": "fsm",
+    "base_hp": 8,
+    "base_mp": 6,
+    "base_sp": 5,
+    "attributes": {
+      "spirit": 4,
+      "vitality": 1
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      2,
+      6
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "fairy_pink",
+    "name": "Pink-Dress Fairy",
+    "char": "f",
+    "color": [
+      255,
+      120,
+      200
+    ],
+    "species_id": "fairy",
+    "innate_id": "fairy_pink",
+    "ai": "fsm",
+    "base_hp": 8,
+    "base_mp": 7,
+    "base_sp": 5,
+    "attributes": {
+      "spirit": 5
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      2,
+      6
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "sunflower_fairy",
+    "name": "Sunflower Fairy",
+    "char": "F",
+    "color": [
+      255,
+      210,
+      40
+    ],
+    "species_id": "sunflower_fairy",
+    "ai": "behavior_tree",
+    "base_hp": 16,
+    "base_mp": 8,
+    "base_sp": 5,
+    "attributes": {
+      "power": 2,
+      "spirit": 2,
+      "vitality": 2
+    },
+    "weapon": "fairy_fists",
+    "loot_gold_range": [
+      6,
+      12
+    ],
+    "loot_drops": [],
+    "spawn_weight": 0.3
+  },
+  {
+    "monster_id": "kedama",
+    "name": "Kedama",
+    "char": "o",
+    "color": [
+      180,
+      140,
+      90
+    ],
+    "species_id": "kedama",
+    "ai": "fsm",
+    "base_hp": 6,
+    "base_mp": 0,
+    "base_sp": 6,
+    "attributes": {
+      "speed": 3
+    },
+    "weapon": null,
+    "loot_gold_range": [
+      2,
+      4
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "wheel_ghost",
+    "name": "Wheel Ghost",
+    "char": "o",
+    "color": [
+      140,
+      90,
+      60
+    ],
+    "species_id": "wheel_ghost",
+    "ai": "fsm",
+    "base_hp": 6,
+    "base_mp": 0,
+    "base_sp": 6,
+    "attributes": {
+      "speed": 3
+    },
+    "weapon": null,
+    "loot_gold_range": [
+      2,
+      4
+    ],
+    "loot_drops": []
+  },
+  {
+    "monster_id": "goblin",
+    "name": "Goblin",
+    "char": "g",
+    "color": [
+      100,
+      180,
+      90
+    ],
+    "species_id": "goblin",
+    "ai": "behavior_tree",
+    "base_hp": 14,
+    "base_mp": 0,
+    "base_sp": 6,
+    "attributes": {
+      "power": 3
+    },
+    "weapon": "rusty_sword",
+    "loot_gold_range": [
+      4,
+      10
+    ],
+    "loot_drops": [
+      [
+        "rusty_sword",
+        0.2
+      ]
+    ]
+  }
+]

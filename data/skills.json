@@ -1,0 +1,7233 @@
+[
+  {
+    "skill_id": "slash",
+    "name": "Slash",
+    "rarity": "common",
+    "category": "active",
+    "cost": {
+      "sp": 2
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "slash_t1",
+        "name": "Practiced Form",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "slash_mastery_1"
+        ]
+      },
+      {
+        "node_id": "slash_t2",
+        "name": "Keen Edge",
+        "requires_level": 4,
+        "prereqs": [
+          "slash_t1"
+        ],
+        "grants_upgrades": [
+          "slash_mastery_2"
+        ]
+      },
+      {
+        "node_id": "slash_t3",
+        "name": "Master's Cut",
+        "requires_level": 5,
+        "prereqs": [
+          "slash_t2"
+        ],
+        "grants_upgrades": [
+          "slash_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "slash_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "power": 0.425
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5,
+            "scaling": {
+              "technique": 0.005
+            }
+          }
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "melee",
+      "physical"
+    ]
+  },
+  {
+    "skill_id": "fireball",
+    "name": "Fireball",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "fireball_t1",
+        "name": "Concentrated Flame",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "fireball_mastery_1"
+        ]
+      },
+      {
+        "node_id": "fireball_t2",
+        "name": "Precise Ignition",
+        "requires_level": 4,
+        "prereqs": [
+          "fireball_t1"
+        ],
+        "grants_upgrades": [
+          "fireball_mastery_2"
+        ]
+      },
+      {
+        "node_id": "fireball_t3",
+        "name": "Roaring Blaze",
+        "requires_level": 5,
+        "prereqs": [
+          "fireball_t2"
+        ],
+        "grants_upgrades": [
+          "fireball_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 6,
+          "radius": 2
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fireball_blast",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 3,
+            "scaling": {
+              "power": 0.1275,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "power": 0.004
+            }
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "fireball_burn",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "fireball_burn",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 2,
+          "duration": 4,
+          "name": "burning"
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "first_aid",
+    "name": "First Aid",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "healing"
+    ],
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "first_aid_t1",
+        "name": "Steady Hands",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "first_aid_mastery_1"
+        ]
+      },
+      {
+        "node_id": "first_aid_t2",
+        "name": "Quick Bandage",
+        "requires_level": 4,
+        "prereqs": [
+          "first_aid_t1"
+        ],
+        "grants_upgrades": [
+          "first_aid_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "first_aid_heal",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "heal",
+          "amount": 5
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "warrior_toughness",
+    "name": "Warrior's Toughness",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "toughness_1",
+        "name": "Hardened Body",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "toughness_vitality_1"
+        ]
+      },
+      {
+        "node_id": "toughness_2",
+        "name": "Iron Skin",
+        "requires_level": 4,
+        "prereqs": [
+          "toughness_1"
+        ],
+        "grants_upgrades": [
+          "toughness_defense_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "toughness_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "toughness_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "ember_lance",
+    "name": "Ember Lance",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 6
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "ember_lance_t1",
+        "name": "Focused Heat",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "ember_lance_mastery_1"
+        ]
+      },
+      {
+        "node_id": "ember_lance_t2",
+        "name": "Searing Point",
+        "requires_level": 4,
+        "prereqs": [
+          "ember_lance_t1"
+        ],
+        "grants_upgrades": [
+          "ember_lance_mastery_2"
+        ]
+      },
+      {
+        "node_id": "ember_lance_t3",
+        "name": "Rapid Cast",
+        "requires_level": 5,
+        "prereqs": [
+          "ember_lance_t2"
+        ],
+        "grants_upgrades": [
+          "ember_lance_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "ember_lance_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 6,
+            "scaling": {
+              "spirit": 0.51
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "spirit": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "frost_lance",
+    "name": "Frost Lance",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "frost_lance_t1",
+        "name": "Sharpened Ice",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "frost_lance_mastery_1"
+        ]
+      },
+      {
+        "node_id": "frost_lance_t2",
+        "name": "Deep Chill",
+        "requires_level": 4,
+        "prereqs": [
+          "frost_lance_t1"
+        ],
+        "grants_upgrades": [
+          "frost_lance_mastery_2"
+        ]
+      },
+      {
+        "node_id": "frost_lance_t3",
+        "name": "Swift Cast",
+        "requires_level": 5,
+        "prereqs": [
+          "frost_lance_t2"
+        ],
+        "grants_upgrades": [
+          "frost_lance_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "frost_lance_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "spirit": 0.34
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "frost_lance_slow",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "frost_lance_slow",
+        "type": "stat_modifier",
+        "targeting": "contextual",
+        "params": {
+          "attribute": "speed",
+          "amount": -2,
+          "duration": 3
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "arcane_proficiency",
+    "name": "Arcane Proficiency",
+    "rarity": "common",
+    "category": "proficiency",
+    "tree": [
+      {
+        "node_id": "arcane_proficiency_t1",
+        "name": "Frugal Casting",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_proficiency_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_cost_reduction_mp_value",
+        "type": "provide_value",
+        "params": {
+          "value": 1,
+          "discount_resource": "mp",
+          "discount_tag": "magic"
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "inferno_mastery",
+    "name": "Inferno Mastery",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "inferno_mastery_t1",
+        "name": "Deeper Flame",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "inferno_mastery_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "inferno_mastery_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "arcane_reservoir",
+    "name": "Arcane Reservoir",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "arcane_reservoir_t1",
+        "name": "Deeper Well",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_reservoir_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_reservoir_mp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mp",
+          "amount": 5,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "piercing_shot",
+    "name": "Piercing Shot",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "ranged",
+      "physical"
+    ],
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "piercing_shot_t1",
+        "name": "Honed Arrowhead",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "piercing_shot_mastery_1"
+        ]
+      },
+      {
+        "node_id": "piercing_shot_t2",
+        "name": "Steady Draw",
+        "requires_level": 4,
+        "prereqs": [
+          "piercing_shot_t1"
+        ],
+        "grants_upgrades": [
+          "piercing_shot_mastery_2"
+        ]
+      },
+      {
+        "node_id": "piercing_shot_t3",
+        "name": "Fatal Precision",
+        "requires_level": 5,
+        "prereqs": [
+          "piercing_shot_t2"
+        ],
+        "grants_upgrades": [
+          "piercing_shot_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "piercing_shot_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 6,
+            "scaling": {
+              "technique": 0.595
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.1,
+            "scaling": {
+              "technique": 0.003
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.6,
+            "scaling": {
+              "technique": 0.005
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "volley",
+    "name": "Volley",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "ranged",
+      "physical"
+    ],
+    "cost": {
+      "sp": 4
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "volley_t1",
+        "name": "Extra Arrows",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "volley_mastery_1"
+        ]
+      },
+      {
+        "node_id": "volley_t2",
+        "name": "Wider Fan",
+        "requires_level": 4,
+        "prereqs": [
+          "volley_t1"
+        ],
+        "grants_upgrades": [
+          "volley_mastery_2"
+        ]
+      },
+      {
+        "node_id": "volley_t3",
+        "name": "Rapid Fire",
+        "requires_level": 5,
+        "prereqs": [
+          "volley_t2"
+        ],
+        "grants_upgrades": [
+          "volley_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 5,
+          "radius": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "volley_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "technique": 0.34
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "marksman_precision",
+    "name": "Marksman's Precision",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "marksman_precision_t1",
+        "name": "Sharper Eye",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "marksman_precision_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "marksman_precision_technique",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "skirmisher_agility",
+    "name": "Skirmisher's Agility",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "skirmisher_agility_t1",
+        "name": "Fleeter Foot",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "skirmisher_agility_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "skirmisher_agility_speed",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "mass_heal",
+    "name": "Mass Heal",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "healing"
+    ],
+    "cost": {
+      "mp": 8
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "mass_heal_t1",
+        "name": "Wider Blessing",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "mass_heal_mastery_1"
+        ]
+      },
+      {
+        "node_id": "mass_heal_t2",
+        "name": "Deeper Well",
+        "requires_level": 4,
+        "prereqs": [
+          "mass_heal_t1"
+        ],
+        "grants_upgrades": [
+          "mass_heal_mastery_2"
+        ]
+      },
+      {
+        "node_id": "mass_heal_t3",
+        "name": "Rapid Benediction",
+        "requires_level": 5,
+        "prereqs": [
+          "mass_heal_t2"
+        ],
+        "grants_upgrades": [
+          "mass_heal_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 4,
+          "radius": 2
+        },
+        "restriction": "ally",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "mass_heal_heal",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "heal",
+          "amount": 8
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "divine_grace",
+    "name": "Divine Grace",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "divine_grace_t1",
+        "name": "Boundless Grace",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "divine_grace_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "divine_grace_mp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mp",
+          "amount": 5,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "smite",
+    "name": "Smite",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "holy",
+      "physical"
+    ],
+    "cost": {
+      "mp": 6
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "smite_t1",
+        "name": "Focused Judgment",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "smite_mastery_1"
+        ]
+      },
+      {
+        "node_id": "smite_t2",
+        "name": "Holy Precision",
+        "requires_level": 4,
+        "prereqs": [
+          "smite_t1"
+        ],
+        "grants_upgrades": [
+          "smite_mastery_2"
+        ]
+      },
+      {
+        "node_id": "smite_t3",
+        "name": "Wrath Unleashed",
+        "requires_level": 5,
+        "prereqs": [
+          "smite_t2"
+        ],
+        "grants_upgrades": [
+          "smite_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "smite_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 6,
+            "scaling": {
+              "spirit": 0.425
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "spirit": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "battle_blessing",
+    "name": "Battle Blessing",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "holy"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "battle_blessing_t1",
+        "name": "Empowering Rite",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "battle_blessing_mastery_1"
+        ]
+      },
+      {
+        "node_id": "battle_blessing_t2",
+        "name": "Lasting Rite",
+        "requires_level": 4,
+        "prereqs": [
+          "battle_blessing_t1"
+        ],
+        "grants_upgrades": [
+          "battle_blessing_mastery_2"
+        ]
+      },
+      {
+        "node_id": "battle_blessing_t3",
+        "name": "Swift Rite",
+        "requires_level": 5,
+        "prereqs": [
+          "battle_blessing_t2"
+        ],
+        "grants_upgrades": [
+          "battle_blessing_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 3
+        },
+        "restriction": "ally",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "battle_blessing_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": 3
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "martyrs_zeal",
+    "name": "Martyr's Zeal",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "martyrs_zeal_t1",
+        "name": "Deeper Devotion",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "martyrs_zeal_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "martyrs_zeal_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "reckless_strike",
+    "name": "Reckless Strike",
+    "rarity": "uncommon",
+    "category": "active",
+    "cost": {
+      "sp": 4
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "reckless_strike_t1",
+        "name": "Heavier Swing",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "reckless_strike_mastery_1"
+        ]
+      },
+      {
+        "node_id": "reckless_strike_t2",
+        "name": "Fluid Recovery",
+        "requires_level": 4,
+        "prereqs": [
+          "reckless_strike_t1"
+        ],
+        "grants_upgrades": [
+          "reckless_strike_mastery_2"
+        ]
+      },
+      {
+        "node_id": "reckless_strike_t3",
+        "name": "Lethal Opening",
+        "requires_level": 5,
+        "prereqs": [
+          "reckless_strike_t2"
+        ],
+        "grants_upgrades": [
+          "reckless_strike_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "reckless_strike_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 8,
+            "scaling": {
+              "power": 0.68
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.6,
+            "scaling": {
+              "technique": 0.005
+            }
+          }
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "melee",
+      "physical"
+    ]
+  },
+  {
+    "skill_id": "shield_wall",
+    "name": "Shield Wall",
+    "rarity": "uncommon",
+    "category": "active",
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "shield_wall_t1",
+        "name": "Reinforced Plating",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "shield_wall_mastery_1"
+        ]
+      },
+      {
+        "node_id": "shield_wall_t2",
+        "name": "Lasting Guard",
+        "requires_level": 4,
+        "prereqs": [
+          "shield_wall_t1"
+        ],
+        "grants_upgrades": [
+          "shield_wall_mastery_2"
+        ]
+      },
+      {
+        "node_id": "shield_wall_t3",
+        "name": "Ready Stance",
+        "requires_level": 5,
+        "prereqs": [
+          "shield_wall_t2"
+        ],
+        "grants_upgrades": [
+          "shield_wall_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "shield_wall_defense",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "defense",
+          "amount": 5,
+          "duration": 3
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "berserker_fury",
+    "name": "Berserker's Fury",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "berserker_fury_t1",
+        "name": "Deeper Rage",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "berserker_fury_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "berserker_fury_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "sentinel_resolve",
+    "name": "Sentinel's Resolve",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "sentinel_resolve_t1",
+        "name": "Deeper Roots",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "sentinel_resolve_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sentinel_resolve_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "hakurei_intuition",
+    "name": "Hakurei Intuition",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "hakurei_intuition_t1",
+        "name": "Sharper Instinct",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "hakurei_intuition_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "intuition_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "magic_bullet",
+    "name": "Magic Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 1
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "magic_bullet_t1",
+        "name": "Denser Bullet",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "magic_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "magic_bullet_t2",
+        "name": "Longer Range",
+        "requires_level": 4,
+        "prereqs": [
+          "magic_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "magic_bullet_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "magic_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.5
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "goblin_hide",
+    "name": "Thick Hide",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "goblin_hide_t1",
+        "name": "Leathery Scales",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "goblin_hide_mastery_1"
+        ]
+      },
+      {
+        "node_id": "goblin_hide_t2",
+        "name": "Thicker Scales",
+        "requires_level": 5,
+        "prereqs": [
+          "goblin_hide_t1"
+        ],
+        "grants_upgrades": [
+          "goblin_hide_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "hide_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "sword_proficiency",
+    "name": "Sword Proficiency",
+    "rarity": "common",
+    "category": "proficiency",
+    "tree": [
+      {
+        "node_id": "sword_proficiency_t1",
+        "name": "Blade Familiarity",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "sword_proficiency_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sword_prof_value",
+        "type": "provide_value",
+        "params": {
+          "value": 5
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "mage_power",
+    "name": "Mage Power",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "mage_power_t1",
+        "name": "Latent Talent",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "mage_power_mastery_1"
+        ]
+      },
+      {
+        "node_id": "mage_power_t2",
+        "name": "Overflowing Reserves",
+        "requires_level": 5,
+        "prereqs": [
+          "mage_power_t1"
+        ],
+        "grants_upgrades": [
+          "mage_power_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "mage_power_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "mage_power_mp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mp",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "bullseye",
+    "name": "Bullseye",
+    "rarity": "common",
+    "category": "active",
+    "cost": {
+      "sp": 2
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "bullseye_t1",
+        "name": "Focused Aim",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "bullseye_mastery_1"
+        ]
+      },
+      {
+        "node_id": "bullseye_t2",
+        "name": "Lingering Focus",
+        "requires_level": 4,
+        "prereqs": [
+          "bullseye_t1"
+        ],
+        "grants_upgrades": [
+          "bullseye_mastery_2"
+        ]
+      },
+      {
+        "node_id": "bullseye_t3",
+        "name": "Dead Center",
+        "requires_level": 5,
+        "prereqs": [
+          "bullseye_t2"
+        ],
+        "grants_upgrades": [
+          "bullseye_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "bullseye_crit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "crit_rate",
+          "amount": 25,
+          "duration": 3,
+          "max_stacks": 1
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "keen_eye",
+    "name": "Keen Eye",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "dextrous_aiming_t1",
+        "name": "Practiced Grip",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "keen_eye_mastery_1"
+        ]
+      },
+      {
+        "node_id": "keen_eye_t2",
+        "name": "Trained Precision",
+        "requires_level": 5,
+        "prereqs": [
+          "dextrous_aiming_t1"
+        ],
+        "grants_upgrades": [
+          "keen_eye_power_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "keen_eye_technique",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "keen_eye_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "minor_heal",
+    "name": "Minor Heal",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "healing"
+    ],
+    "cost": {
+      "mp": 3
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "minor_heal_t1",
+        "name": "Gentle Touch",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "minor_heal_mastery_1"
+        ]
+      },
+      {
+        "node_id": "minor_heal_t2",
+        "name": "Reaching Hands",
+        "requires_level": 4,
+        "prereqs": [
+          "minor_heal_t1"
+        ],
+        "grants_upgrades": [
+          "minor_heal_mastery_2"
+        ]
+      },
+      {
+        "node_id": "minor_heal_t3",
+        "name": "Practiced Rite",
+        "requires_level": 5,
+        "prereqs": [
+          "minor_heal_t2"
+        ],
+        "grants_upgrades": [
+          "minor_heal_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 3
+        },
+        "restriction": "ally",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "minor_heal_heal",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "heal",
+          "amount": 5
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "gentle_aura",
+    "name": "Gentle Aura",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "gentle_aura_t1",
+        "name": "Warmer Light",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "gentle_aura_mastery_1"
+        ]
+      },
+      {
+        "node_id": "gentle_aura_t2",
+        "name": "Radiant Overflow",
+        "requires_level": 5,
+        "prereqs": [
+          "gentle_aura_t1"
+        ],
+        "grants_upgrades": [
+          "gentle_aura_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "gentle_aura_hp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "hp",
+          "amount": 15,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "gentle_aura_mp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mp",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "healing_proficiency",
+    "name": "Healing Proficiency",
+    "rarity": "common",
+    "category": "proficiency",
+    "tree": [
+      {
+        "node_id": "healing_proficiency_t1",
+        "name": "Efficient Rites",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "healing_proficiency_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "heal_cost_reduction_mp_value",
+        "type": "provide_value",
+        "params": {
+          "value": 1,
+          "discount_resource": "mp",
+          "discount_tag": "healing"
+        }
+      },
+      {
+        "effect_id": "heal_cost_reduction_sp_value",
+        "type": "provide_value",
+        "params": {
+          "value": 1,
+          "discount_resource": "sp",
+          "discount_tag": "healing"
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "regeneration",
+    "name": "Regeneration",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "regeneration_t1",
+        "name": "Faster Recovery",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "regeneration_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "regen_mp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "mp",
+          "amount": 1,
+          "period": 3
+        }
+      },
+      {
+        "effect_id": "regen_sp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "sp",
+          "amount": 1,
+          "period": 3
+        }
+      },
+      {
+        "effect_id": "regen_hp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "hp",
+          "amount": 1,
+          "period": 5
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "magicians_ambition",
+    "name": "Magician's Ambition",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "magicians_ambition_t1",
+        "name": "Growing Ambition",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "magicians_ambition_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "ambition_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "spellcard_thicket_snare",
+    "name": "Spell \"Thicket Snare\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "magic"
+    ],
+    "cost": {
+      "mp": 10
+    },
+    "cooldown": 8,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "snare_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 10,
+            "scaling": {
+              "spirit": 0.425
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "snare_status",
+        "type": "status_condition",
+        "params": {
+          "status": "ensnared",
+          "duration": 5
+        },
+        "priority": 5
+      }
+    ]
+  },
+  {
+    "skill_id": "spellcard_tidal_wrath",
+    "name": "Spell \"Tidal Wrath\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "magic"
+    ],
+    "cost": {
+      "mp": 12
+    },
+    "cooldown": 10,
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 6,
+          "radius": 2
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "wrath_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 8,
+            "scaling": {
+              "spirit": 0.34
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "wrath_slow",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": -3,
+          "duration": 6
+        },
+        "priority": 5
+      }
+    ]
+  },
+  {
+    "skill_id": "human_resilience",
+    "name": "Hardy Stock",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "human_resilience_t1",
+        "name": "Deep Roots",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "human_resilience_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "human_resilience_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "second_wind",
+    "name": "Second Wind",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "healing"
+    ],
+    "cost": {
+      "mp": 3
+    },
+    "cooldown": 6,
+    "tree": [
+      {
+        "node_id": "second_wind_t1",
+        "name": "Deeper Breath",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "second_wind_mastery_1"
+        ]
+      },
+      {
+        "node_id": "second_wind_t2",
+        "name": "Quicker Recovery",
+        "requires_level": 4,
+        "prereqs": [
+          "second_wind_t1"
+        ],
+        "grants_upgrades": [
+          "second_wind_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "second_wind_heal",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "heal",
+          "amount": 10
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "adrenaline_rush",
+    "name": "Adrenaline Rush",
+    "rarity": "uncommon",
+    "category": "active",
+    "cost": {
+      "sp": 4
+    },
+    "cooldown": 6,
+    "tree": [
+      {
+        "node_id": "adrenaline_rush_t1",
+        "name": "Surging Vigor",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "adrenaline_rush_mastery_1"
+        ]
+      },
+      {
+        "node_id": "adrenaline_rush_t2",
+        "name": "Lasting Surge",
+        "requires_level": 4,
+        "prereqs": [
+          "adrenaline_rush_t1"
+        ],
+        "grants_upgrades": [
+          "adrenaline_rush_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "adrenaline_rush_speed",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 3,
+          "duration": 4
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "adrenaline_rush_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": 4
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "human_tenacity",
+    "name": "Unshakeable Resolve",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "human_tenacity_t1",
+        "name": "Iron Will",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "human_tenacity_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "human_tenacity_presence",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "presence",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "humanitys_will",
+    "name": "Humanity's Will",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "humanitys_will_t1",
+        "name": "Boundless Potential",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "humanitys_will_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "humanitys_will_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "humanitys_will_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "danmaku_barrage",
+    "name": "Danmaku Barrage",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 6
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "danmaku_barrage_t1",
+        "name": "Thicker Curtain",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "danmaku_barrage_mastery_1"
+        ]
+      },
+      {
+        "node_id": "danmaku_barrage_t2",
+        "name": "Faster Volley",
+        "requires_level": 4,
+        "prereqs": [
+          "danmaku_barrage_t1"
+        ],
+        "grants_upgrades": [
+          "danmaku_barrage_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 5,
+          "radius": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "danmaku_barrage_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "spirit": 0.34
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "fairy_flight",
+    "name": "Fairy Flight",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "fairy_flight_t1",
+        "name": "Nimble Wings",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "fairy_flight_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fairy_flight_speed",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "fairy_mischief",
+    "name": "Fairy's Mischief",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "fairy_mischief_t1",
+        "name": "Deeper Trickery",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "fairy_mischief_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fairy_mischief_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "goblin_smash",
+    "name": "Goblin Smash",
+    "rarity": "uncommon",
+    "category": "active",
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "goblin_smash_t1",
+        "name": "Heavier Club",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "goblin_smash_mastery_1"
+        ]
+      },
+      {
+        "node_id": "goblin_smash_t2",
+        "name": "Faster Swing",
+        "requires_level": 4,
+        "prereqs": [
+          "goblin_smash_t1"
+        ],
+        "grants_upgrades": [
+          "goblin_smash_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "goblin_smash_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 6,
+            "scaling": {
+              "power": 0.51
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "technique": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "physical"
+    ]
+  },
+  {
+    "skill_id": "goblin_resilience",
+    "name": "Goblin Resilience",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "goblin_resilience_t1",
+        "name": "Tougher Hide",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "goblin_resilience_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "goblin_resilience_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "goblin_ferocity",
+    "name": "Goblin Ferocity",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "goblin_ferocity_t1",
+        "name": "Savage Instinct",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "goblin_ferocity_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "goblin_ferocity_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "yin_yang_orb",
+    "name": "Yin-Yang Orb",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 4
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "yin_yang_orb_t1",
+        "name": "Sealing Power",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "yin_yang_orb_mastery_1"
+        ]
+      },
+      {
+        "node_id": "yin_yang_orb_t2",
+        "name": "Focused Spirit",
+        "requires_level": 4,
+        "prereqs": [
+          "yin_yang_orb_t1"
+        ],
+        "grants_upgrades": [
+          "yin_yang_orb_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "yin_yang_orb_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "spirit": 0.425
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "spirit": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "exorcism_ward",
+    "name": "Exorcism Ward",
+    "rarity": "uncommon",
+    "category": "active",
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 5,
+    "tree": [
+      {
+        "node_id": "exorcism_ward_t1",
+        "name": "Stronger Wards",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "exorcism_ward_mastery_1"
+        ]
+      },
+      {
+        "node_id": "exorcism_ward_t2",
+        "name": "Lasting Wards",
+        "requires_level": 4,
+        "prereqs": [
+          "exorcism_ward_t1"
+        ],
+        "grants_upgrades": [
+          "exorcism_ward_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "exorcism_ward_defense",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "defense",
+          "amount": 4,
+          "duration": 4
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "exorcism_ward_magic_defense",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "magic_defense",
+          "amount": 4,
+          "duration": 4
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "fantasy_seal",
+    "name": "Spell \"Fantasy Seal\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "magic",
+      "spellcard"
+    ],
+    "cost": {
+      "mp": 12
+    },
+    "cooldown": 8,
+    "tree": [
+      {
+        "node_id": "fantasy_seal_t1",
+        "name": "Boundary of Humans and Youkai",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "fantasy_seal_mastery_1"
+        ]
+      },
+      {
+        "node_id": "fantasy_seal_t2",
+        "name": "Wider Sealing",
+        "requires_level": 4,
+        "prereqs": [
+          "fantasy_seal_t1"
+        ],
+        "grants_upgrades": [
+          "fantasy_seal_mastery_2"
+        ]
+      },
+      {
+        "node_id": "fantasy_seal_t3",
+        "name": "Absolute Extermination",
+        "requires_level": 5,
+        "prereqs": [
+          "fantasy_seal_t2"
+        ],
+        "grants_upgrades": [
+          "fantasy_seal_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 6,
+          "radius": 2
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fantasy_seal_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 10,
+            "scaling": {
+              "spirit": 0.51
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5,
+            "scaling": {
+              "spirit": 0.005
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "ordinary_insight",
+    "name": "Ordinary Insight",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "ordinary_insight_t1",
+        "name": "Uncommon Cunning",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "ordinary_insight_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "ordinary_insight_technique",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "master_spark",
+    "name": "Spell \"Master Spark\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "magic",
+      "spellcard"
+    ],
+    "cost": {
+      "mp": 15
+    },
+    "cooldown": 10,
+    "tree": [
+      {
+        "node_id": "master_spark_t1",
+        "name": "Love-Colored Magic",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "master_spark_mastery_1"
+        ]
+      },
+      {
+        "node_id": "master_spark_t2",
+        "name": "Wider Beam",
+        "requires_level": 4,
+        "prereqs": [
+          "master_spark_t1"
+        ],
+        "grants_upgrades": [
+          "master_spark_mastery_2"
+        ]
+      },
+      {
+        "node_id": "master_spark_t3",
+        "name": "Final Spark",
+        "requires_level": 5,
+        "prereqs": [
+          "master_spark_t2"
+        ],
+        "grants_upgrades": [
+          "master_spark_mastery_3"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 7,
+          "radius": 2
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "master_spark_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 14,
+            "scaling": {
+              "spirit": 0.595
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.6,
+            "scaling": {
+              "spirit": 0.005
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "fairy_mana_flow",
+    "name": "Fairy Mana Flow",
+    "rarity": "common",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "fairy_mana_flow_mp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "mp",
+          "amount": 1,
+          "period": 3
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "flame_bullet",
+    "name": "Flame Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "fire"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "flame_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.2975
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "flame_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "flame_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "flame_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "flame_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "flame_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "frost_bullet",
+    "name": "Frost Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "ice"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "frost_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "frost_bullet_slow",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "frost_bullet_slow",
+        "type": "stat_modifier",
+        "targeting": "contextual",
+        "params": {
+          "attribute": "speed",
+          "amount": -1,
+          "duration": 2
+        },
+        "priority": 0
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "frost_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "frost_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "frost_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "frost_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "frost_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "verdant_bullet",
+    "name": "Verdant Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "earth"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "verdant_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "verdant_bullet_sap",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "verdant_bullet_sap",
+        "type": "stat_modifier",
+        "targeting": "contextual",
+        "params": {
+          "attribute": "power",
+          "amount": -1,
+          "duration": 2
+        },
+        "priority": 0
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "verdant_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "verdant_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "verdant_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "verdant_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "verdant_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "toxic_bullet",
+    "name": "Toxic Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "poison"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "toxic_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.2125
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "toxic_bullet_poison",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "toxic_bullet_poison",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 2,
+          "duration": 3,
+          "name": "poison"
+        },
+        "priority": 0
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "toxic_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "toxic_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "toxic_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "toxic_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "toxic_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "light_bullet",
+    "name": "Light Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "light"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "light_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.06,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "light_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "light_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "light_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "light_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "light_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "shock_bullet",
+    "name": "Shock Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "lightning"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "shock_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "shock_bullet_shock",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "shock_bullet_shock",
+        "type": "stat_modifier",
+        "targeting": "contextual",
+        "params": {
+          "attribute": "defense",
+          "amount": -2,
+          "duration": 2
+        },
+        "priority": 0
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "shock_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "shock_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "shock_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "shock_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "shock_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "shadow_bullet",
+    "name": "Shadow Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic",
+      "dark"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "shadow_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "shadow_bullet_blind",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "shadow_bullet_blind",
+        "type": "stat_modifier",
+        "targeting": "contextual",
+        "params": {
+          "attribute": "crit_rate",
+          "amount": -3,
+          "duration": 2
+        },
+        "priority": 0
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "shadow_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "shadow_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "shadow_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "shadow_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "shadow_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "void_bullet",
+    "name": "Void Bullet",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "void_bullet_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          },
+          "accuracy": 0.65
+        },
+        "priority": 10
+      }
+    ],
+    "tree": [
+      {
+        "node_id": "void_bullet_t1",
+        "name": "Honed Casting",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "void_bullet_mastery_1"
+        ]
+      },
+      {
+        "node_id": "void_bullet_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "void_bullet_t1"
+        ],
+        "grants_upgrades": [
+          "void_bullet_mastery_2"
+        ]
+      }
+    ]
+  },
+  {
+    "skill_id": "sunflower_barrage",
+    "name": "Sunflower Barrage",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 3,
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 5,
+          "radius": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sunflower_barrage_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "power": 0.255,
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "sunflower_bloom",
+    "name": "Sunflower Bloom",
+    "rarity": "uncommon",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "sunflower_bloom_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "sunflower_bloom_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "sunflower_bloom_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "sunflower_vigor",
+    "name": "Sunflower Vigor",
+    "rarity": "uncommon",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "sunflower_vigor_hp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "hp",
+          "amount": 1,
+          "period": 3
+        }
+      },
+      {
+        "effect_id": "sunflower_vigor_mp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "mp",
+          "amount": 1,
+          "period": 3
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "kedama_rush",
+    "name": "Kedama Rush",
+    "rarity": "common",
+    "category": "active",
+    "cost": {
+      "sp": 2
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "kedama_rush_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "power": 0.34,
+              "speed": 0.17
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03,
+            "scaling": {
+              "technique": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "physical"
+    ]
+  },
+  {
+    "skill_id": "kedama_agility",
+    "name": "Kedama Agility",
+    "rarity": "common",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "kedama_agility_speed",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "kedama_agility_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "cinder_claw",
+    "name": "Cinder Claw",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "fire",
+      "physical"
+    ],
+    "cost": {
+      "sp": 2
+    },
+    "cooldown": 1,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "cinder_claw_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "power": 0.28,
+              "spirit": 0.08
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "well_pull",
+    "name": "Well's Pull",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [],
+    "cost": {
+      "sp": 4
+    },
+    "cooldown": 4,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "well_pull_effect",
+        "type": "forced_movement",
+        "movement_kind": "pull",
+        "distance": 3,
+        "params": {},
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "inferno_grasp",
+    "name": "Inferno Grasp",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "fire",
+      "physical"
+    ],
+    "cost": {
+      "sp": 5
+    },
+    "cooldown": 3,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "inferno_grasp_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 11,
+            "scaling": {
+              "power": 0.68
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "inferno_grasp_burn",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "inferno_grasp_burn",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 4,
+          "duration": 3,
+          "name": "burning"
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "well_dive",
+    "name": "Spell \"Well Dive\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "fire",
+      "spellcard",
+      "physical"
+    ],
+    "cost": {
+      "sp": 8
+    },
+    "cooldown": 8,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "well_dive_reposition",
+        "type": "forced_movement",
+        "movement_kind": "teleport_adjacent",
+        "params": {},
+        "priority": 15
+      },
+      {
+        "effect_id": "well_dive_burst",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 16,
+            "scaling": {
+              "power": 0.765,
+              "spirit": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.08,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.6
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "venom_shot",
+    "name": "Venom Shot",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "poison",
+      "physical"
+    ],
+    "cost": {
+      "mp": 4
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "venom_shot_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 6,
+            "scaling": {
+              "spirit": 0.2975,
+              "power": 0.17
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "venom_shot_poison",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "venom_shot_poison",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 3,
+          "duration": 3,
+          "name": "poison"
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "web_shot",
+    "name": "Web Shot",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "physical"
+    ],
+    "cost": {
+      "mp": 3
+    },
+    "cooldown": 4,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "web_shot_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "spirit": 0.2125
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "web_shot_status",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "web_shot_status",
+        "type": "status_condition",
+        "targeting": "contextual",
+        "params": {
+          "status": "webbed",
+          "duration": 1
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "trap_sign_capture_web",
+    "name": "Trap Sign \"Capture Web\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "physical"
+    ],
+    "cost": {
+      "mp": 10
+    },
+    "cooldown": 8,
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 5,
+          "radius": 3
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "capture_web_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "spirit": 0.17
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.2
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "capture_web_status",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "capture_web_status",
+        "type": "status_condition",
+        "targeting": "contextual",
+        "params": {
+          "status": "webbed",
+          "duration": 4
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "miasma_sign_filled_miasma",
+    "name": "Miasma Sign \"Filled Miasma\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "poison",
+      "magic"
+    ],
+    "cost": {
+      "mp": 12
+    },
+    "cooldown": 10,
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "circle",
+        "shape_params": {
+          "range": 5,
+          "radius": 3
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "filled_miasma_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 9,
+            "scaling": {
+              "spirit": 0.425
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "filled_miasma_poison",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "filled_miasma_poison",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 4,
+          "duration": 4,
+          "name": "poison"
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "envious_glare",
+    "name": "Envious Glare",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 4
+    },
+    "cooldown": 2,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "envious_glare_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 7,
+            "scaling": {
+              "presence": 0.34,
+              "spirit": 0.17
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.001
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "jealous_theft",
+    "name": "Jealous Theft",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 6
+    },
+    "cooldown": 4,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "jealous_theft_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "spirit": 0.2125
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "jealous_theft_steal",
+        "type": "steal_buff",
+        "params": {},
+        "priority": 5
+      }
+    ]
+  },
+  {
+    "skill_id": "envious_recovery",
+    "name": "Envious Recovery",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "healing",
+      "magic"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 5,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "envious_recovery_heal",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "heal",
+          "amount": 14
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "envy_sign_green_eyed_duplicate",
+    "name": "Envy Sign \"Green-Eyed Duplicate\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "magic"
+    ],
+    "cost": {
+      "mp": 14
+    },
+    "cooldown": 12,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "green_eyed_duplicate_clone",
+        "type": "summon_clone",
+        "params": {
+          "fraction": 0.5
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "green_eyed_duplicate_buff",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": 5
+        },
+        "priority": 5
+      }
+    ]
+  },
+  {
+    "skill_id": "youkai_resilience",
+    "name": "Youkai Resilience",
+    "rarity": "common",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "youkai_resilience_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "youkai_resilience_presence",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "presence",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "youkai_instinct",
+    "name": "Youkai Instinct",
+    "rarity": "common",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "youkai_instinct_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "youkai_instinct_technique",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "youkai_ferocity",
+    "name": "Youkai Ferocity",
+    "rarity": "uncommon",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "youkai_ferocity_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 2,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "youkai_true_form",
+    "name": "Youkai True Form",
+    "rarity": "rare",
+    "category": "passive",
+    "effects": [
+      {
+        "effect_id": "youkai_true_form_vitality",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "youkai_true_form_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      },
+      {
+        "effect_id": "youkai_true_form_spirit",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "charge",
+    "name": "Charge",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "melee",
+      "physical"
+    ],
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "charge_t1",
+        "name": "Momentum",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "charge_mastery_1"
+        ]
+      },
+      {
+        "node_id": "charge_t2",
+        "name": "Battering Charge",
+        "requires_level": 4,
+        "prereqs": [
+          "charge_t1"
+        ],
+        "grants_upgrades": [
+          "charge_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "charge_reposition",
+        "type": "forced_movement",
+        "movement_kind": "teleport_adjacent",
+        "params": {},
+        "priority": 15
+      },
+      {
+        "effect_id": "charge_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 3,
+            "scaling": {
+              "power": 0.34
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.03
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "battle_fortitude",
+    "name": "Battle Fortitude",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "battle_fortitude_t1",
+        "name": "Hardened Endurance",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "battle_fortitude_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "battle_fortitude_hp",
+        "type": "resource_regen",
+        "params": {
+          "resource": "hp",
+          "amount": 1,
+          "period": 3
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "holy_spark",
+    "name": "Holy Spark",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "holy",
+      "magic"
+    ],
+    "cost": {
+      "mp": 3
+    },
+    "cooldown": 1,
+    "tree": [
+      {
+        "node_id": "holy_spark_t1",
+        "name": "Focused Faith",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "holy_spark_mastery_1"
+        ]
+      },
+      {
+        "node_id": "holy_spark_t2",
+        "name": "Radiant Precision",
+        "requires_level": 4,
+        "prereqs": [
+          "holy_spark_t1"
+        ],
+        "grants_upgrades": [
+          "holy_spark_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "holy_spark_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 3,
+            "scaling": {
+              "presence": 0.1275,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "presence": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "aimed_shot",
+    "name": "Aimed Shot",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "ranged",
+      "physical"
+    ],
+    "cost": {
+      "sp": 4
+    },
+    "cooldown": 4,
+    "charge_turns": 1,
+    "charge_lock_movement": true,
+    "tree": [
+      {
+        "node_id": "aimed_shot_t1",
+        "name": "Practiced Draw",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "aimed_shot_mastery_1"
+        ]
+      },
+      {
+        "node_id": "aimed_shot_t2",
+        "name": "Killing Range",
+        "requires_level": 4,
+        "prereqs": [
+          "aimed_shot_t1"
+        ],
+        "grants_upgrades": [
+          "aimed_shot_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 6
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "aimed_shot_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 10,
+            "scaling": {
+              "power": 0.68
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.6,
+            "scaling": {
+              "power": 0.004,
+              "technique": 0.005
+            }
+          },
+          "conditional_bonus": {
+            "requires_buff_source": "bullseye",
+            "crit_rate_bonus": 0.25,
+            "guarantees_hit": true
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "disengage",
+    "name": "Disengage",
+    "rarity": "common",
+    "category": "active",
+    "cost": {
+      "sp": 5
+    },
+    "cooldown": 6,
+    "tree": [
+      {
+        "node_id": "disengage_t1",
+        "name": "Loose Footing",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "disengage_mastery_1"
+        ]
+      },
+      {
+        "node_id": "disengage_t2",
+        "name": "Vanishing Step",
+        "requires_level": 4,
+        "prereqs": [
+          "disengage_t1"
+        ],
+        "grants_upgrades": [
+          "disengage_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "none",
+        "target_kind": "location"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "disengage_move",
+        "type": "forced_movement",
+        "movement_kind": "teleport",
+        "params": {},
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "sneak_attack",
+    "name": "Sneak Attack",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "sneak_attack_t1",
+        "name": "Killing Instinct",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "sneak_attack_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sneak_attack_bonus",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "sneak_attack_multiplier",
+          "amount": 0.5,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "stealth",
+    "name": "Stealth",
+    "rarity": "common",
+    "category": "active",
+    "cost": {},
+    "cooldown": 10,
+    "tree": [
+      {
+        "node_id": "stealth_t1",
+        "name": "Fading Steps",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "stealth_mastery_1"
+        ]
+      },
+      {
+        "node_id": "stealth_t2",
+        "name": "Practiced Silence",
+        "requires_level": 4,
+        "prereqs": [
+          "stealth_t1"
+        ],
+        "grants_upgrades": [
+          "stealth_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "self",
+        "restriction": "self",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "stealth_status",
+        "type": "status_condition",
+        "params": {
+          "status": "stealthed",
+          "duration": 3
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "stab",
+    "name": "Stab",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "melee",
+      "physical"
+    ],
+    "cost": {
+      "sp": 3
+    },
+    "cooldown": 2,
+    "tree": [
+      {
+        "node_id": "stab_t1",
+        "name": "Wider Gash",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "stab_mastery_1"
+        ]
+      },
+      {
+        "node_id": "stab_t2",
+        "name": "Deeper Cut",
+        "requires_level": 4,
+        "prereqs": [
+          "stab_t1"
+        ],
+        "grants_upgrades": [
+          "stab_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 1
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "stab_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 4,
+            "scaling": {
+              "technique": 0.255
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.02
+          },
+          "crit_damage_formula": {
+            "base": 1.3
+          }
+        },
+        "priority": 10,
+        "on_trigger": [
+          {
+            "event": "on_hit",
+            "effect_id": "stab_bleed",
+            "delay": 0
+          }
+        ]
+      },
+      {
+        "effect_id": "stab_bleed",
+        "type": "dot_hot",
+        "targeting": "contextual",
+        "params": {
+          "mode": "dot",
+          "amount": 4,
+          "duration": 1,
+          "name": "bleeding"
+        },
+        "priority": 0
+      }
+    ]
+  },
+  {
+    "skill_id": "rogue_finesse",
+    "name": "Finesse",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "rogue_finesse_t1",
+        "name": "Sharpened Instincts",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "rogue_finesse_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "rogue_finesse_technique",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 1,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "rogue_finesse_speed",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "magic_missile",
+    "name": "Magic Missile",
+    "rarity": "common",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 3
+    },
+    "cooldown": 1,
+    "tree": [
+      {
+        "node_id": "magic_missile_t1",
+        "name": "Focused Bolt",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "magic_missile_mastery_1"
+        ]
+      },
+      {
+        "node_id": "magic_missile_t2",
+        "name": "Precise Casting",
+        "requires_level": 4,
+        "prereqs": [
+          "magic_missile_t1"
+        ],
+        "grants_upgrades": [
+          "magic_missile_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "magic_missile_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 3,
+            "scaling": {
+              "power": 0.1275,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "power": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "mana_shield",
+    "name": "Mana Shield",
+    "rarity": "common",
+    "category": "passive",
+    "tags": [
+      "magic"
+    ],
+    "tree": [
+      {
+        "node_id": "mana_shield_t1",
+        "name": "Warding Focus",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "mana_shield_mastery_1"
+        ]
+      },
+      {
+        "node_id": "mana_shield_t2",
+        "name": "Lingering Ward",
+        "requires_level": 4,
+        "prereqs": [
+          "mana_shield_t1"
+        ],
+        "grants_upgrades": [
+          "mana_shield_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "mana_shield_buff",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mana_shield_percent",
+          "amount": 25,
+          "duration": -1
+        },
+        "priority": 10
+      }
+    ],
+    "toggleable": true,
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "aggressive_bloodletting",
+    "name": "Aggressive Bloodletting",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "aggressive_bloodletting_t1",
+        "name": "Deeper Wounds",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "aggressive_bloodletting_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "bloodletting_flat",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "lifesteal_flat",
+          "amount": 1,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "bloodletting_percent",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "lifesteal_percent",
+          "amount": 5,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "unyielding_resolve",
+    "name": "Unyielding Resolve",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "unyielding_resolve_t1",
+        "name": "Wider Recovery",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "unyielding_resolve_mastery_1"
+        ]
+      },
+      {
+        "node_id": "unyielding_resolve_t2",
+        "name": "Deeper Recovery",
+        "requires_level": 5,
+        "prereqs": [
+          "unyielding_resolve_t1"
+        ],
+        "grants_upgrades": [
+          "unyielding_resolve_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "unyielding_resolve_count",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "endurance_cleanse_count",
+          "amount": 1,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "unyielding_resolve_turns",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "endurance_cleanse_turns",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "exposed_wound",
+    "name": "Exposed Wound",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "exposed_wound_t1",
+        "name": "Ragged Edge",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "exposed_wound_mastery_1"
+        ]
+      },
+      {
+        "node_id": "exposed_wound_t2",
+        "name": "Lasting Exposure",
+        "requires_level": 5,
+        "prereqs": [
+          "exposed_wound_t1"
+        ],
+        "grants_upgrades": [
+          "exposed_wound_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "exposed_wound_damage",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "bleed_mark_damage",
+          "amount": 2,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "exposed_wound_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "bleed_mark_duration",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "healers_grace",
+    "name": "Healer's Grace",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "healers_grace_t1",
+        "name": "Deeper Wellspring",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "healers_grace_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "healers_grace_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "healing_power_percent",
+          "amount": 10,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_heal_cast"
+  },
+  {
+    "skill_id": "restorative_echo",
+    "name": "Restorative Echo",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "restorative_echo_t1",
+        "name": "Lingering Echo",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "restorative_echo_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "restorative_echo_flat",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "devout_self_heal_flat",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_heal_cast"
+  },
+  {
+    "skill_id": "sacred_overflow",
+    "name": "Sacred Overflow",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "sacred_overflow_t1",
+        "name": "Boundless Overflow",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "sacred_overflow_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sacred_overflow_portion",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "devout_portion_percent",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_heal_cast"
+  },
+  {
+    "skill_id": "zealous_strikes",
+    "name": "Zealous Strikes",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "zealous_strikes_t1",
+        "name": "Righteous Fervor",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "zealous_strikes_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "zealous_strikes_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_damage_percent",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "faltering_light",
+    "name": "Faltering Light",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "faltering_light_t1",
+        "name": "Piercing Radiance",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "faltering_light_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "faltering_light_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_evasion_debuff_chance",
+          "amount": 10,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "faltering_light_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_evasion_debuff_amount",
+          "amount": 10,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "faltering_light_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_evasion_debuff_duration",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "blinding_radiance",
+    "name": "Blinding Radiance",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "blinding_radiance_t1",
+        "name": "Searing Radiance",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "blinding_radiance_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "blinding_radiance_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_blind_chance",
+          "amount": 5,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "blinding_radiance_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "holy_blind_duration",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "reckless_stance",
+    "name": "Reckless Stance",
+    "rarity": "uncommon",
+    "category": "passive",
+    "toggleable": true,
+    "tree": [
+      {
+        "node_id": "reckless_stance_t1",
+        "name": "Tempered Recklessness",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "reckless_stance_mastery_1"
+        ]
+      },
+      {
+        "node_id": "reckless_stance_t2",
+        "name": "Lasting Fury",
+        "requires_level": 4,
+        "prereqs": [
+          "reckless_stance_t1"
+        ],
+        "grants_upgrades": [
+          "reckless_stance_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "reckless_stance_dealt",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "damage_dealt_percent",
+          "amount": 20,
+          "duration": -1
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "reckless_stance_taken",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "damage_taken_percent",
+          "amount": 10,
+          "duration": -1
+        },
+        "priority": 10
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "reckless_vigor",
+    "name": "Reckless Vigor",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "reckless_vigor_t1",
+        "name": "Growing Fury",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "reckless_vigor_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "reckless_vigor_dealt",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "damage_dealt_percent",
+          "amount": 10,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "stalwart_frame",
+    "name": "Stalwart Frame",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "stalwart_frame_t1",
+        "name": "Thicker Hide",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "stalwart_frame_mastery_1"
+        ]
+      },
+      {
+        "node_id": "stalwart_frame_t2",
+        "name": "Iron Bulwark",
+        "requires_level": 4,
+        "prereqs": [
+          "stalwart_frame_t1"
+        ],
+        "grants_upgrades": [
+          "stalwart_frame_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "stalwart_frame_hp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "hp",
+          "amount": 10,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "stalwart_frame_defense",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "defense",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "grim_endurance",
+    "name": "Grim Endurance",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "grim_endurance_t1",
+        "name": "Deeper Grit",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "grim_endurance_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "grim_endurance_mitigation",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "hp_scaling_mitigation_max",
+          "amount": 10,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "envious_seal",
+    "name": "Envious Seal",
+    "rarity": "rare",
+    "category": "active",
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 6,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "envious_seal_silence",
+        "type": "status_condition",
+        "params": {
+          "status": "silenced",
+          "duration": 2
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "magic"
+    ]
+  },
+  {
+    "skill_id": "seething_grudge",
+    "name": "Seething Grudge",
+    "rarity": "rare",
+    "category": "active",
+    "cost": {
+      "mp": 4
+    },
+    "cooldown": 12,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "seething_grudge_mark",
+        "type": "status_condition",
+        "params": {
+          "status": "grudge",
+          "duration": 999,
+          "max_stacks": 5
+        },
+        "priority": 10
+      }
+    ],
+    "tags": [
+      "magic"
+    ]
+  },
+  {
+    "skill_id": "grudge_detonation",
+    "name": "Envy Sign \"Grudge Detonation\"",
+    "rarity": "rare",
+    "category": "active",
+    "tags": [
+      "spellcard",
+      "magic"
+    ],
+    "cost": {
+      "mp": 5
+    },
+    "cooldown": 8,
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 6
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "grudge_detonation_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "requires_status": {
+            "status": "grudge",
+            "consume": true,
+            "min_stacks": 5
+          },
+          "damage_formula": {
+            "base": 15,
+            "scaling": {
+              "spirit": 0.51
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "festering_wounds",
+    "name": "Festering Wounds",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "festering_wounds_t1",
+        "name": "Deeper Rot",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "festering_wounds_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "festering_wounds_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "dot_duration_bonus",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "twisting_knife",
+    "name": "Twisting Knife",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "twisting_knife_t1",
+        "name": "Cruel Twist",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "twisting_knife_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "twisting_knife_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "double_stack_chance",
+          "amount": 10,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "quick_reflexes",
+    "name": "Quick Reflexes",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "quick_reflexes_t1",
+        "name": "Sharper Instincts",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "quick_reflexes_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "quick_reflexes_evasion",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "evasion",
+          "amount": 5,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_evaded"
+  },
+  {
+    "skill_id": "fading_momentum",
+    "name": "Fading Momentum",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "fading_momentum_t1",
+        "name": "Swifter Vanish",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "fading_momentum_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fading_momentum_tempo",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "stealth_tempo_percent",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_evaded"
+  },
+  {
+    "skill_id": "evasive_retaliation",
+    "name": "Evasive Retaliation",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "evasive_retaliation_t1",
+        "name": "Growing Momentum",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "evasive_retaliation_mastery_1"
+        ]
+      },
+      {
+        "node_id": "evasive_retaliation_t2",
+        "name": "Higher Ceiling",
+        "requires_level": 5,
+        "prereqs": [
+          "evasive_retaliation_t1"
+        ],
+        "grants_upgrades": [
+          "evasive_retaliation_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "evasive_retaliation_percent",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "evasion_stack_percent",
+          "amount": 5,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "evasive_retaliation_cap",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "evasion_stack_cap",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_evaded"
+  },
+  {
+    "skill_id": "marksmans_reload",
+    "name": "Marksman's Reload",
+    "description": "A chance to not consume ammo on a ranged attack.",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "marksmans_reload_t1",
+        "name": "Practiced Hands",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "marksmans_reload_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "marksmans_reload_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "ammo_save_chance",
+          "amount": 10,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "focused_aim",
+    "name": "Focused Aim",
+    "description": "Landing a crit has a chance to build Focus, a stacking, decaying bonus to crit damage.",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "focused_aim_t1",
+        "name": "Sharpened Focus",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "focused_aim_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "focused_aim_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "focus_stack_chance",
+          "amount": 25,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "focused_aim_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "focus_stack_amount",
+          "amount": 10,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "focused_aim_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "focus_stack_duration",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "opening_shot",
+    "name": "Opening Shot",
+    "description": "Crits against a target still at full HP deal bonus flat damage.",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "opening_shot_t1",
+        "name": "Decisive Strike",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "opening_shot_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "opening_shot_bonus",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "full_hp_crit_bonus_flat",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "measured_distance",
+    "name": "Measured Distance",
+    "description": "Bonus damage while attacking from range.",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "measured_distance_t1",
+        "name": "Clear Line",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "measured_distance_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "measured_distance_range",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "ranged_bonus_distance",
+          "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "measured_distance_bonus",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "ranged_bonus_percent",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "fleet_footed",
+    "name": "Fleet-Footed",
+    "description": "Using a movement skill grants a brief technique and speed buff.",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "fleet_footed_t1",
+        "name": "Light on Your Feet",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "fleet_footed_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "fleet_footed_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "movement_buff_amount",
+          "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "fleet_footed_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "movement_buff_duration",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_move_skill"
+  },
+  {
+    "skill_id": "running_advantage",
+    "name": "Running Advantage",
+    "description": "Attacking from farther away deals more damage, scaling per tile of distance up to a cap.",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "running_advantage_t1",
+        "name": "Ground to Cover",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "running_advantage_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "running_advantage_per_tile",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "distance_bonus_per_tile",
+          "amount": 4,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "running_advantage_cap",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "distance_bonus_cap",
+          "amount": 40,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_damage_dealt"
+  },
+  {
+    "skill_id": "arcane_bulwark",
+    "name": "Arcane Bulwark",
+    "description": "Flat bonus to magic defense.",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "arcane_bulwark_t1",
+        "name": "Layered Wards",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_bulwark_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_bulwark_defense",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "magic_defense",
+          "amount": 8,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "warding_shroud",
+    "name": "Warding Shroud",
+    "description": "A portion of any damage taken is banked as temporary HP for a couple of turns, absorbing hits before anything else.",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "warding_shroud_t1",
+        "name": "Lingering Ward",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "warding_shroud_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "warding_shroud_percent",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "ward_percent",
+          "amount": 10,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "warding_shroud_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "ward_duration",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "spell_reflection",
+    "name": "Spell Reflection",
+    "description": "Toggleable. While on, reflects a portion of incoming damage back at the attacker before any mitigation.",
+    "rarity": "rare",
+    "category": "passive",
+    "toggleable": true,
+    "tree": [
+      {
+        "node_id": "spell_reflection_t1",
+        "name": "Sharper Rebound",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "spell_reflection_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "spell_reflection_percent",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "reflect_percent",
+          "amount": 20,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_hp_change"
+  },
+  {
+    "skill_id": "efficient_casting",
+    "name": "Efficient Casting",
+    "description": "Flat MP cost reduction on magic skills.",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "efficient_casting_t1",
+        "name": "Practiced Weave",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "efficient_casting_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "efficient_casting_reduction",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "magic_cost_reduction",
+          "amount": 2,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_resource_consumed"
+  },
+  {
+    "skill_id": "arcane_recycling",
+    "name": "Arcane Recycling",
+    "description": "A chance for a magic skill to cost nothing when cast.",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "arcane_recycling_t1",
+        "name": "Reclaimed Mana",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_recycling_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_recycling_chance",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "magic_cost_refund_chance",
+          "amount": 15,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_resource_consumed"
+  },
+  {
+    "skill_id": "arcane_tempo",
+    "name": "Arcane Tempo",
+    "description": "Flat cooldown reduction on all magic skills.",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "arcane_tempo_t1",
+        "name": "Racing Thoughts",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_tempo_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_tempo_reduction",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "magic_cooldown_reduction",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ],
+    "exp_trigger": "on_resource_consumed"
+  },
+  {
+    "skill_id": "faith_attunement",
+    "name": "Faith Attunement",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "faith_attunement_t1",
+        "name": "Deeper Devotion",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "faith_attunement_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "faith_attunement_regen",
+        "type": "resource_regen",
+        "params": {
+          "resource": "faith",
+          "amount": 1,
+          "period": 4
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "youkai_buster",
+    "name": "Youkai Buster",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "youkai_buster_t1",
+        "name": "Zealous Exorcist",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "youkai_buster_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "youkai_buster_damage",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "damage_vs_youkai",
+          "amount": 20,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "purification_ofuda",
+    "name": "Purification Ofuda",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic",
+      "spiritual"
+    ],
+    "cost": {
+      "faith": 2
+    },
+    "cooldown": 3,
+    "tree": [
+      {
+        "node_id": "purification_ofuda_t1",
+        "name": "Sharper Wards",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "purification_ofuda_mastery_1"
+        ]
+      },
+      {
+        "node_id": "purification_ofuda_t2",
+        "name": "Longer Reach",
+        "requires_level": 4,
+        "prereqs": [
+          "purification_ofuda_t1"
+        ],
+        "grants_upgrades": [
+          "purification_ofuda_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 10
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "purification_ofuda_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "ignore_evasion": true,
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "spirit": 0.2975
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "spirit": 0.004
+            }
+          },
+          "bonus_vs_species": {
+            "species": "youkai",
+            "percent": 25
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "persuasion_needles",
+    "name": "Persuasion Needles",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "holy",
+      "physical"
+    ],
+    "cost": {
+      "faith": 5
+    },
+    "cooldown": 5,
+    "tree": [
+      {
+        "node_id": "persuasion_needles_t1",
+        "name": "Honed Needles",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "persuasion_needles_mastery_1"
+        ]
+      },
+      {
+        "node_id": "persuasion_needles_t2",
+        "name": "Needle Storm",
+        "requires_level": 4,
+        "prereqs": [
+          "persuasion_needles_t1"
+        ],
+        "grants_upgrades": [
+          "persuasion_needles_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 3
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "persuasion_needles_hit_1",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "technique": 0.2125,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5,
+            "scaling": {
+              "technique": 0.004
+            }
+          },
+          "crit_vs_species": {
+            "species": "youkai",
+            "percent": 15
+          }
+        },
+        "priority": 10
+      },
+      {
+        "effect_id": "persuasion_needles_hit_2",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "technique": 0.2125,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5,
+            "scaling": {
+              "technique": 0.004
+            }
+          },
+          "crit_vs_species": {
+            "species": "youkai",
+            "percent": 15
+          }
+        },
+        "priority": 9
+      },
+      {
+        "effect_id": "persuasion_needles_hit_3",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "technique": 0.2125,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.05,
+            "scaling": {
+              "technique": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.5,
+            "scaling": {
+              "technique": 0.004
+            }
+          },
+          "crit_vs_species": {
+            "species": "youkai",
+            "percent": 15
+          }
+        },
+        "priority": 8
+      }
+    ]
+  },
+  {
+    "skill_id": "toxic_fortitude",
+    "name": "Toxic Fortitude",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "toxic_fortitude_t1",
+        "name": "Hardened Constitution",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "toxic_fortitude_mastery_1"
+        ]
+      },
+      {
+        "node_id": "toxic_fortitude_t2",
+        "name": "Immunity to Toxins",
+        "requires_level": 4,
+        "prereqs": [
+          "toxic_fortitude_t1"
+        ],
+        "grants_upgrades": [
+          "toxic_fortitude_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "toxic_fortitude_resist",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "resist_poison",
+          "amount": 30,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "arcane_diligence",
+    "name": "Arcane Diligence",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "arcane_diligence_t1",
+        "name": "Studious Practice",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "arcane_diligence_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "arcane_diligence_class_exp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "class_exp_percent",
+          "amount": 20,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "stream_laser",
+    "name": "Stream Laser",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 8
+    },
+    "cooldown": 4,
+    "tree": [
+      {
+        "node_id": "stream_laser_t1",
+        "name": "Steadier Beam",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "stream_laser_mastery_1"
+        ]
+      },
+      {
+        "node_id": "stream_laser_t2",
+        "name": "Sustained Stream",
+        "requires_level": 4,
+        "prereqs": [
+          "stream_laser_t1"
+        ],
+        "grants_upgrades": [
+          "stream_laser_mastery_2"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "shape",
+        "range_shape": "line",
+        "shape_params": {
+          "range": 5,
+          "length": 5
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "stream_laser_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "accuracy": 0.75,
+          "damage_formula": {
+            "base": 5,
+            "scaling": {
+              "power": 0.2975
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "power": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "power": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "stardust_missile",
+    "name": "Stardust Missile",
+    "rarity": "uncommon",
+    "category": "active",
+    "tags": [
+      "magic"
+    ],
+    "cost": {
+      "mp": 2
+    },
+    "cooldown": 1,
+    "tree": [
+      {
+        "node_id": "stardust_missile_t1",
+        "name": "Quicker Stars",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "stardust_missile_mastery_1"
+        ]
+      }
+    ],
+    "activation_targeting": [
+      {
+        "selection_mode": "single",
+        "range_shape": "point",
+        "shape_params": {
+          "range": 4
+        },
+        "restriction": "enemy",
+        "target_kind": "entity"
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "stardust_missile_damage",
+        "type": "instant_damage_heal",
+        "params": {
+          "mode": "damage",
+          "damage_formula": {
+            "base": 2,
+            "scaling": {
+              "power": 0.1275,
+              "spirit": 0.1275
+            }
+          },
+          "crit_rate_formula": {
+            "base": 0.04,
+            "scaling": {
+              "spirit": 0.002
+            }
+          },
+          "crit_damage_formula": {
+            "base": 1.4,
+            "scaling": {
+              "power": 0.004
+            }
+          }
+        },
+        "priority": 10
+      }
+    ]
+  },
+  {
+    "skill_id": "sunken_malice",
+    "name": "Sunken Malice",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "sunken_malice_t1",
+        "name": "Deepening Grudge",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "sunken_malice_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "sunken_malice_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "cinderproof_husk",
+    "name": "Cinderproof Husk",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "cinderproof_husk_t1",
+        "name": "Thicker Husk",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "cinderproof_husk_mastery_1"
+        ]
+      },
+      {
+        "node_id": "cinderproof_husk_t2",
+        "name": "Fireproof Husk",
+        "requires_level": 4,
+        "prereqs": [
+          "cinderproof_husk_t1"
+        ],
+        "grants_upgrades": [
+          "cinderproof_husk_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "cinderproof_husk_resist",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "resist_fire",
+          "amount": 30,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "kindled_fury",
+    "name": "Kindled Fury",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "kindled_fury_t1",
+        "name": "Stoked Flames",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "kindled_fury_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "kindled_fury_damage",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "fire_damage_percent",
+          "amount": 20,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "predators_instinct",
+    "name": "Predator's Instinct",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "predators_instinct_t1",
+        "name": "Sharpened Fangs",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "predators_instinct_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "predators_instinct_power",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "chitinous_hide",
+    "name": "Chitinous Hide",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "chitinous_hide_t1",
+        "name": "Thicker Chitin",
+        "requires_level": 2,
+        "grants_upgrades": [
+          "chitinous_hide_mastery_1"
+        ]
+      },
+      {
+        "node_id": "chitinous_hide_t2",
+        "name": "Venomproof Chitin",
+        "requires_level": 4,
+        "prereqs": [
+          "chitinous_hide_t1"
+        ],
+        "grants_upgrades": [
+          "chitinous_hide_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "chitinous_hide_resist",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "resist_poison",
+          "amount": 30,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "lingering_venom",
+    "name": "Lingering Venom",
+    "rarity": "uncommon",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "lingering_venom_t1",
+        "name": "Deeper Infection",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "lingering_venom_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "lingering_venom_duration",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "dot_duration_bonus",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "simmering_envy",
+    "name": "Simmering Envy",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "simmering_envy_t1",
+        "name": "Deepening Jealousy",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "simmering_envy_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "simmering_envy_presence",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "presence",
+          "amount": 1,
+          "duration": -1,
+          "scale_with_level": true
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "loner",
+    "name": "Loner",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "loner_t1",
+        "name": "Bitter Solitude",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "loner_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "loner_skill_exp_alone",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "skill_exp_bonus_alone",
+          "amount": 50,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "loner_skill_exp_party",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "skill_exp_bonus_party",
+          "amount": 5,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "solitary_malice",
+    "name": "Solitary Malice",
+    "rarity": "rare",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "solitary_malice_t1",
+        "name": "Unshared Spite",
+        "requires_level": 4,
+        "grants_upgrades": [
+          "solitary_malice_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "solitary_malice_alone",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "skill_damage_bonus_alone",
+          "amount": 30,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "solitary_malice_party",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "skill_damage_bonus_party",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "spirit_boost",
+    "name": "Spirit Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "spirit_boost_t1",
+        "name": "Growing Spirit",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "spirit_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "spirit_boost_t2",
+        "name": "Deepening Spirit",
+        "requires_level": 5,
+        "prereqs": [
+          "spirit_boost_t1"
+        ],
+        "grants_upgrades": [
+          "spirit_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "spirit_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "spirit",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "vitality_boost",
+    "name": "Vitality Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "vitality_boost_t1",
+        "name": "Growing Vitality",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "vitality_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "vitality_boost_t2",
+        "name": "Deepening Vitality",
+        "requires_level": 5,
+        "prereqs": [
+          "vitality_boost_t1"
+        ],
+        "grants_upgrades": [
+          "vitality_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "vitality_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "vitality",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "technique_boost",
+    "name": "Technique Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "technique_boost_t1",
+        "name": "Growing Technique",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "technique_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "technique_boost_t2",
+        "name": "Deepening Technique",
+        "requires_level": 5,
+        "prereqs": [
+          "technique_boost_t1"
+        ],
+        "grants_upgrades": [
+          "technique_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "technique_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "technique",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "power_boost",
+    "name": "Power Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "power_boost_t1",
+        "name": "Growing Power",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "power_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "power_boost_t2",
+        "name": "Deepening Power",
+        "requires_level": 5,
+        "prereqs": [
+          "power_boost_t1"
+        ],
+        "grants_upgrades": [
+          "power_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "power_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "presence_boost",
+    "name": "Presence Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "presence_boost_t1",
+        "name": "Growing Presence",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "presence_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "presence_boost_t2",
+        "name": "Deepening Presence",
+        "requires_level": 5,
+        "prereqs": [
+          "presence_boost_t1"
+        ],
+        "grants_upgrades": [
+          "presence_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "presence_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "presence",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "speed_boost",
+    "name": "Speed Boost",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "speed_boost_t1",
+        "name": "Growing Speed",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "speed_boost_mastery_1"
+        ]
+      },
+      {
+        "node_id": "speed_boost_t2",
+        "name": "Deepening Speed",
+        "requires_level": 5,
+        "prereqs": [
+          "speed_boost_t1"
+        ],
+        "grants_upgrades": [
+          "speed_boost_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "speed_boost_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 3,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "kedama_swiftness",
+    "name": "Kedama Swiftness",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "kedama_swiftness_t1",
+        "name": "Quicker Bounds",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "kedama_swiftness_mastery_1"
+        ]
+      },
+      {
+        "node_id": "kedama_swiftness_t2",
+        "name": "Tireless Bounds",
+        "requires_level": 5,
+        "prereqs": [
+          "kedama_swiftness_t1"
+        ],
+        "grants_upgrades": [
+          "kedama_swiftness_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "kedama_swiftness_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "speed",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "goblin_might",
+    "name": "Goblin Might",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "goblin_might_t1",
+        "name": "Growing Might",
+        "requires_level": 3,
+        "grants_upgrades": [
+          "goblin_might_mastery_1"
+        ]
+      },
+      {
+        "node_id": "goblin_might_t2",
+        "name": "Brutal Might",
+        "requires_level": 5,
+        "prereqs": [
+          "goblin_might_t1"
+        ],
+        "grants_upgrades": [
+          "goblin_might_mastery_2"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "goblin_might_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "power",
+          "amount": 1,
+          "duration": -1
+        }
+      }
+    ]
+  },
+  {
+    "skill_id": "wheel_ghost_evasion",
+    "name": "Rolling Momentum",
+    "rarity": "common",
+    "category": "passive",
+    "tree": [
+      {
+        "node_id": "wheel_ghost_evasion_t1",
+        "name": "Faster Spin",
+        "requires_level": 5,
+        "grants_upgrades": [
+          "wheel_ghost_evasion_mastery_1"
+        ]
+      }
+    ],
+    "effects": [
+      {
+        "effect_id": "wheel_ghost_evasion_amount",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "evasion",
+          "amount": 5,
+          "duration": -1
+        }
+      }
+    ]
+  }
+]

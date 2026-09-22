@@ -1,0 +1,648 @@
+[
+  {
+    "class_id": "warrior",
+    "name": "Warrior",
+    "unlock_cost_gold": 0,
+    "description": "Tough and brave, wielding a varity of weapons and armor.",
+    "max_level": 10,
+    "tree": [
+      {
+        "node_id": "warrior_1",
+        "name": "Battle-Hardened",
+        "description": "Close distance fast: learn Charge, a gap-closer with a bit of bite.",
+        "requires_level": 1,
+        "grants_skills": [
+          "charge"
+        ]
+      },
+      {
+        "node_id": "warrior_2",
+        "name": "Honed Edge",
+        "description": "Learn Warrior's Toughness, a flat stat boost.",
+        "requires_level": 2,
+        "prereqs": [
+          "warrior_1"
+        ],
+        "grants_skills": [
+          "warrior_toughness"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "warrior_3",
+        "name": "Way of the Blade",
+        "requires_level": 3,
+        "prereqs": [
+          "warrior_2"
+        ],
+        "grants_skills": [
+          "slash"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "warrior_4",
+        "name": "Second Wind",
+        "description": "Shrug off attrition: learn Battle Fortitude, passive HP regen.",
+        "requires_level": 4,
+        "prereqs": [
+          "warrior_3"
+        ],
+        "grants_skills": [
+          "battle_fortitude"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "warrior_aggression_minor",
+        "name": "Aggression: Reckless Vigor",
+        "description": "Damage first, ask questions never. Learn Reckless Vigor (flat bonus damage dealt).",
+        "requires_level": 5,
+        "prereqs": [
+          "warrior_4"
+        ],
+        "grants_skills": [
+          "reckless_vigor"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "warrior_aggression_mid",
+        "name": "Aggression: Reckless Stance",
+        "requires_level": 7,
+        "prereqs": [
+          "warrior_aggression_minor"
+        ],
+        "grants_skills": [
+          "reckless_stance"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "warrior_aggression_capstone",
+        "name": "Aggression: Aggressive Bloodletting",
+        "requires_level": 10,
+        "prereqs": [
+          "warrior_aggression_mid"
+        ],
+        "grants_skills": [
+          "aggressive_bloodletting"
+        ],
+        "cost": 3
+      },
+      {
+        "node_id": "warrior_endurance_minor",
+        "name": "Endurance: Stalwart Frame",
+        "description": "Outlast anything. Learn Stalwart Frame (flat HP and defense).",
+        "requires_level": 5,
+        "prereqs": [
+          "warrior_4"
+        ],
+        "grants_skills": [
+          "stalwart_frame"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "warrior_endurance_mid",
+        "name": "Endurance: Grim Endurance",
+        "requires_level": 7,
+        "prereqs": [
+          "warrior_endurance_minor"
+        ],
+        "grants_skills": [
+          "grim_endurance"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "warrior_endurance_capstone",
+        "name": "Endurance: Unyielding Resolve",
+        "requires_level": 10,
+        "prereqs": [
+          "warrior_endurance_mid"
+        ],
+        "grants_skills": [
+          "unyielding_resolve"
+        ],
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "class_id": "mage",
+    "name": "Mage",
+    "unlock_cost_gold": 0,
+    "max_level": 10,
+    "tree": [
+      {
+        "node_id": "mage_1",
+        "name": "First Spark",
+        "requires_level": 1,
+        "grants_skills": [
+          "magic_missile"
+        ]
+      },
+      {
+        "node_id": "mage_2",
+        "name": "Arcane Focus",
+        "description": "Learn Mage Power, a flat stat boost.",
+        "requires_level": 2,
+        "prereqs": [
+          "mage_1"
+        ],
+        "grants_skills": [
+          "mage_power"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "mage_5",
+        "name": "Wider Blast",
+        "description": "Learn Fireball, an AoE burst with a burn DoT.",
+        "requires_level": 3,
+        "prereqs": [
+          "mage_2"
+        ],
+        "grants_skills": [
+          "fireball"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "mage_3",
+        "name": "Arcane Ward",
+        "description": "Mage has no defense against getting hit back \u2014 learn Mana Shield, a toggleable passive converting a portion of incoming damage into MP loss instead of HP.",
+        "requires_level": 4,
+        "prereqs": [
+          "mage_5"
+        ],
+        "grants_skills": [
+          "mana_shield"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "mage_warding_minor",
+        "name": "Warding: Arcane Bulwark",
+        "description": "The resilient caster. Learn Arcane Bulwark (flat magic defense).",
+        "requires_level": 5,
+        "prereqs": [
+          "mage_3"
+        ],
+        "grants_skills": [
+          "arcane_bulwark"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "mage_warding_mid",
+        "name": "Warding: Warding Shroud",
+        "requires_level": 7,
+        "prereqs": [
+          "mage_warding_minor"
+        ],
+        "grants_skills": [
+          "warding_shroud"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "mage_warding_capstone",
+        "name": "Warding: Spell Reflection",
+        "requires_level": 10,
+        "prereqs": [
+          "mage_warding_mid"
+        ],
+        "grants_skills": [
+          "spell_reflection"
+        ],
+        "cost": 3
+      },
+      {
+        "node_id": "mage_tempo_minor",
+        "name": "Tempo: Efficient Casting",
+        "description": "The cast-cadence caster. Learn Efficient Casting (flat MP cost reduction).",
+        "requires_level": 5,
+        "prereqs": [
+          "mage_3"
+        ],
+        "grants_skills": [
+          "efficient_casting"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "mage_tempo_mid",
+        "name": "Tempo: Arcane Recycling",
+        "requires_level": 7,
+        "prereqs": [
+          "mage_tempo_minor"
+        ],
+        "grants_skills": [
+          "arcane_recycling"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "mage_tempo_capstone",
+        "name": "Tempo: Arcane Tempo",
+        "requires_level": 10,
+        "prereqs": [
+          "mage_tempo_mid"
+        ],
+        "grants_skills": [
+          "arcane_tempo"
+        ],
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "class_id": "ranger",
+    "name": "Ranger",
+    "unlock_cost_gold": 60,
+    "max_level": 10,
+    "tree": [
+      {
+        "node_id": "ranger_1",
+        "name": "Way of the Bow",
+        "requires_level": 1,
+        "grants_skills": [
+          "aimed_shot"
+        ]
+      },
+      {
+        "node_id": "ranger_2",
+        "name": "Steady Hand",
+        "description": "Learn Keen Eye, a flat stat boost.",
+        "requires_level": 2,
+        "prereqs": [
+          "ranger_1"
+        ],
+        "grants_skills": [
+          "keen_eye"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "ranger_5",
+        "name": "Sighted Shot",
+        "description": "Learn Bullseye, a self-buff priming the next few hits to crit.",
+        "requires_level": 3,
+        "prereqs": [
+          "ranger_2"
+        ],
+        "grants_skills": [
+          "bullseye"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "ranger_3",
+        "name": "Fall Back",
+        "description": "Ranger lacks Warrior's toughness \u2014 learn Disengage, a short-range vanish to open distance from anything that gets too close.",
+        "requires_level": 4,
+        "prereqs": [
+          "ranger_5"
+        ],
+        "grants_skills": [
+          "disengage"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "ranger_marksman_minor",
+        "name": "Marksman: Steady Aim",
+        "description": "Commit to the hit, make it count. Learn Marksman's Reload (a chance to save ammo).",
+        "requires_level": 5,
+        "prereqs": [
+          "ranger_3"
+        ],
+        "grants_skills": [
+          "marksmans_reload"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "ranger_marksman_mid",
+        "name": "Marksman: Focused Aim",
+        "requires_level": 7,
+        "prereqs": [
+          "ranger_marksman_minor"
+        ],
+        "grants_skills": [
+          "focused_aim"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "ranger_marksman_capstone",
+        "name": "Marksman: Opening Shot",
+        "requires_level": 10,
+        "prereqs": [
+          "ranger_marksman_mid"
+        ],
+        "grants_skills": [
+          "opening_shot"
+        ],
+        "cost": 3
+      },
+      {
+        "node_id": "ranger_skirmisher_minor",
+        "name": "Skirmisher: Measured Distance",
+        "description": "Distance is your defense. Learn Measured Distance (bonus damage from range).",
+        "requires_level": 5,
+        "prereqs": [
+          "ranger_3"
+        ],
+        "grants_skills": [
+          "measured_distance"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "ranger_skirmisher_mid",
+        "name": "Skirmisher: Fleet-Footed",
+        "requires_level": 7,
+        "prereqs": [
+          "ranger_skirmisher_minor"
+        ],
+        "grants_skills": [
+          "fleet_footed"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "ranger_skirmisher_capstone",
+        "name": "Skirmisher: Running Advantage",
+        "requires_level": 10,
+        "prereqs": [
+          "ranger_skirmisher_mid"
+        ],
+        "grants_skills": [
+          "running_advantage"
+        ],
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "class_id": "cleric",
+    "name": "Cleric",
+    "unlock_cost_gold": 60,
+    "max_level": 10,
+    "tree": [
+      {
+        "node_id": "cleric_1",
+        "name": "First Blessing",
+        "requires_level": 1,
+        "grants_skills": [
+          "minor_heal"
+        ]
+      },
+      {
+        "node_id": "cleric_5",
+        "name": "Gentle Warmth",
+        "description": "Learn Gentle Aura, a flat stat boost.",
+        "requires_level": 2,
+        "prereqs": [
+          "cleric_1"
+        ],
+        "grants_skills": [
+          "gentle_aura"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "cleric_3",
+        "name": "Holy Spark",
+        "description": "A low-cost, low-cooldown offensive option so Cleric isn't purely reactive before its class fork.",
+        "requires_level": 3,
+        "prereqs": [
+          "cleric_5"
+        ],
+        "grants_skills": [
+          "holy_spark"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "cleric_2",
+        "name": "Divine Practice",
+        "requires_level": 4,
+        "prereqs": [
+          "cleric_3"
+        ],
+        "grants_skills": [
+          "healing_proficiency"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "cleric_devout_minor",
+        "name": "Devout: Healer's Grace",
+        "description": "Every heal does more, for everyone. Learn Healer's Grace (bonus healing power).",
+        "requires_level": 5,
+        "prereqs": [
+          "cleric_2"
+        ],
+        "grants_skills": [
+          "healers_grace"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "cleric_devout_mid",
+        "name": "Devout: Restorative Echo",
+        "requires_level": 7,
+        "prereqs": [
+          "cleric_devout_minor"
+        ],
+        "grants_skills": [
+          "restorative_echo"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "cleric_devout_capstone",
+        "name": "Devout: Sacred Overflow",
+        "requires_level": 10,
+        "prereqs": [
+          "cleric_devout_mid"
+        ],
+        "grants_skills": [
+          "sacred_overflow"
+        ],
+        "cost": 3
+      },
+      {
+        "node_id": "cleric_battle_minor",
+        "name": "Battle Cleric: Zealous Strikes",
+        "description": "Holy fire, not just holy light. Learn Zealous Strikes (bonus holy damage).",
+        "requires_level": 5,
+        "prereqs": [
+          "cleric_2"
+        ],
+        "grants_skills": [
+          "zealous_strikes"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "cleric_battle_mid",
+        "name": "Battle Cleric: Faltering Light",
+        "requires_level": 7,
+        "prereqs": [
+          "cleric_battle_minor"
+        ],
+        "grants_skills": [
+          "faltering_light"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "cleric_battle_capstone",
+        "name": "Battle Cleric: Blinding Radiance",
+        "requires_level": 10,
+        "prereqs": [
+          "cleric_battle_mid"
+        ],
+        "grants_skills": [
+          "blinding_radiance"
+        ],
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "class_id": "rogue",
+    "name": "Rogue",
+    "unlock_cost_gold": 60,
+    "description": "Strikes from the shadows and slips away before the counter lands.",
+    "max_level": 10,
+    "tree": [
+      {
+        "node_id": "rogue_1",
+        "name": "Way of the Shadow",
+        "requires_level": 1,
+        "grants_skills": [
+          "stab"
+        ]
+      },
+      {
+        "node_id": "rogue_2",
+        "name": "Sharpened Instincts",
+        "description": "Learn Finesse, a flat stat boost.",
+        "requires_level": 2,
+        "prereqs": [
+          "rogue_1"
+        ],
+        "grants_skills": [
+          "rogue_finesse"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "rogue_5",
+        "name": "Fade Into Shadow",
+        "description": "Learn Stealth, a temporary vanish \u2014 an escape option on its own, and the setup for Sneak Attack once that's learned.",
+        "requires_level": 3,
+        "prereqs": [
+          "rogue_2"
+        ],
+        "grants_skills": [
+          "stealth"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "rogue_4",
+        "name": "Killing Instinct",
+        "description": "Learn Sneak Attack, a passive bonus to attacks made out of Stealth.",
+        "requires_level": 4,
+        "prereqs": [
+          "rogue_5"
+        ],
+        "grants_skills": [
+          "sneak_attack"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "rogue_reflexes_minor",
+        "name": "Reflexes: Quick Reflexes",
+        "description": "Never be where the hit lands. Learn Quick Reflexes (flat evasion).",
+        "requires_level": 5,
+        "prereqs": [
+          "rogue_4"
+        ],
+        "grants_skills": [
+          "quick_reflexes"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "rogue_reflexes_mid",
+        "name": "Reflexes: Fading Momentum",
+        "requires_level": 7,
+        "prereqs": [
+          "rogue_reflexes_minor"
+        ],
+        "grants_skills": [
+          "fading_momentum"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "rogue_reflexes_capstone",
+        "name": "Reflexes: Evasive Retaliation",
+        "requires_level": 10,
+        "prereqs": [
+          "rogue_reflexes_mid"
+        ],
+        "grants_skills": [
+          "evasive_retaliation"
+        ],
+        "cost": 3
+      },
+      {
+        "node_id": "rogue_attrition_minor",
+        "name": "Attrition: Festering Wounds",
+        "description": "The cut that never closes. Learn Festering Wounds (bonus DoT duration).",
+        "requires_level": 5,
+        "prereqs": [
+          "rogue_4"
+        ],
+        "grants_skills": [
+          "festering_wounds"
+        ],
+        "cost": 1
+      },
+      {
+        "node_id": "rogue_attrition_mid",
+        "name": "Attrition: Twisting Knife",
+        "requires_level": 7,
+        "prereqs": [
+          "rogue_attrition_minor"
+        ],
+        "grants_skills": [
+          "twisting_knife"
+        ],
+        "cost": 2
+      },
+      {
+        "node_id": "rogue_attrition_capstone",
+        "name": "Attrition: Exposed Wound",
+        "requires_level": 10,
+        "prereqs": [
+          "rogue_attrition_mid"
+        ],
+        "grants_skills": [
+          "exposed_wound"
+        ],
+        "cost": 3
+      }
+    ]
+  }
+]

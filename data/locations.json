@@ -1,0 +1,28 @@
+[
+  {
+    "location_id": "fantastic_blowhole",
+    "name": "Underworld",
+    "description": "A cave deep in the Underworld, home to fairies of every color and the youkai who prey on trespassers.",
+    "min_depth": 6,
+    "floor_range": [5, 5],
+    "enemy_species": ["fairy_red", "fairy_blue", "fairy_green", "fairy_pink", "sunflower_fairy"],
+    "boss_ids": ["kisume", "yamame"],
+    "generator": "cave",
+    "boss_arena": "open",
+    "map_width": 130,
+    "map_height": 90
+  },
+  {
+    "location_id": "deep_road_to_hell",
+    "name": "Underworld",
+    "description": "A series of wide tunnels leading deeper into the Underworld.",
+    "min_depth": 11,
+    "floor_range": [5, 5],
+    "enemy_species": ["fairy_red", "fairy_blue", "fairy_green", "fairy_pink", "sunflower_fairy", "wheel_ghost"],
+    "boss_id": "parsee",
+    "generator": "tunnels",
+    "boss_arena": "bridge",
+    "map_width": 130,
+    "map_height": 90
+  }
+]

@@ -1,0 +1,2843 @@
+[
+  {
+    "upgrade_id": "toughness_vitality_1",
+    "skill_id": "warrior_toughness",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_strike_power_1",
+    "skill_id": "reckless_strike",
+    "requires_level": 7,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_strike_crit_1",
+    "skill_id": "reckless_strike",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.05
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shield_wall_duration_1",
+    "skill_id": "shield_wall",
+    "requires_level": 7,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shield_wall_defense_1",
+    "skill_id": "shield_wall",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "ember_lance_power_1",
+    "skill_id": "ember_lance",
+    "requires_level": 7,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fireball_burn_1",
+    "skill_id": "fireball",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_lance_slow_1",
+    "skill_id": "frost_lance",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": -1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.duration",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "piercing_shot_power_1",
+    "skill_id": "piercing_shot",
+    "requires_level": 7,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "bullseye_rate_1",
+    "skill_id": "bullseye",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "volley_radius_1",
+    "skill_id": "volley",
+    "requires_level": 7,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "keen_eye_power_1",
+    "skill_id": "keen_eye",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mass_heal_power_1",
+    "skill_id": "mass_heal",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "smite_power_1",
+    "skill_id": "smite",
+    "requires_level": 9,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "first_aid_power_1",
+    "skill_id": "first_aid",
+    "requires_level": 15,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "human_regeneration_1",
+    "skill_id": "regeneration",
+    "requires_level": 25,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sword_proficiency_1",
+    "skill_id": "sword_proficiency",
+    "requires_level": 30,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.value",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "second_wind_power_1",
+    "skill_id": "second_wind",
+    "requires_level": 40,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_bullet_power_1",
+    "skill_id": "magic_bullet",
+    "requires_level": 10,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "danmaku_barrage_radius_1",
+    "skill_id": "danmaku_barrage",
+    "requires_level": 40,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_hide_1",
+    "skill_id": "goblin_hide",
+    "requires_level": 10,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_smash_power_1",
+    "skill_id": "goblin_smash",
+    "requires_level": 40,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "yin_yang_orb_power_1",
+    "skill_id": "yin_yang_orb",
+    "requires_level": 20,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "exorcism_ward_1",
+    "skill_id": "exorcism_ward",
+    "requires_level": 40,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "slash_mastery_1",
+    "skill_id": "slash",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "slash_mastery_2",
+    "skill_id": "slash",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.03
+      }
+    ]
+  },
+  {
+    "upgrade_id": "slash_mastery_3",
+    "skill_id": "slash",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_damage_formula.base",
+        "value": 0.1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "toughness_defense_1",
+    "skill_id": "warrior_toughness",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "append",
+        "path": "effects",
+        "value": {
+          "effect_id": "toughness_defense",
+          "type": "stat_modifier",
+          "params": {
+            "attribute": "defense",
+            "amount": 2,
+            "duration": -1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_strike_mastery_1",
+    "skill_id": "reckless_strike",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_strike_mastery_2",
+    "skill_id": "reckless_strike",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_strike_mastery_3",
+    "skill_id": "reckless_strike",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.04
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shield_wall_mastery_1",
+    "skill_id": "shield_wall",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shield_wall_mastery_2",
+    "skill_id": "shield_wall",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shield_wall_mastery_3",
+    "skill_id": "shield_wall",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "berserker_fury_mastery_1",
+    "skill_id": "berserker_fury",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sentinel_resolve_mastery_1",
+    "skill_id": "sentinel_resolve",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fireball_mastery_1",
+    "skill_id": "fireball",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fireball_mastery_2",
+    "skill_id": "fireball",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fireball_mastery_3",
+    "skill_id": "fireball",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "ember_lance_mastery_1",
+    "skill_id": "ember_lance",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "ember_lance_mastery_2",
+    "skill_id": "ember_lance",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.03
+      }
+    ]
+  },
+  {
+    "upgrade_id": "ember_lance_mastery_3",
+    "skill_id": "ember_lance",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_lance_mastery_1",
+    "skill_id": "frost_lance",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_lance_mastery_2",
+    "skill_id": "frost_lance",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_lance_mastery_3",
+    "skill_id": "frost_lance",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_proficiency_mastery_1",
+    "skill_id": "arcane_proficiency",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.value",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "inferno_mastery_mastery_1",
+    "skill_id": "inferno_mastery",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_reservoir_mastery_1",
+    "skill_id": "arcane_reservoir",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mage_power_mastery_1",
+    "skill_id": "mage_power",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "piercing_shot_mastery_1",
+    "skill_id": "piercing_shot",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "piercing_shot_mastery_2",
+    "skill_id": "piercing_shot",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.04
+      }
+    ]
+  },
+  {
+    "upgrade_id": "piercing_shot_mastery_3",
+    "skill_id": "piercing_shot",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "volley_mastery_1",
+    "skill_id": "volley",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "volley_mastery_2",
+    "skill_id": "volley",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "volley_mastery_3",
+    "skill_id": "volley",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "marksman_precision_mastery_1",
+    "skill_id": "marksman_precision",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "skirmisher_agility_mastery_1",
+    "skill_id": "skirmisher_agility",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "bullseye_mastery_1",
+    "skill_id": "bullseye",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "bullseye_mastery_2",
+    "skill_id": "bullseye",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "append",
+        "path": "effects",
+        "value": {
+          "effect_id": "crosshair_crit_damage",
+          "type": "stat_modifier",
+          "params": {
+            "attribute": "crit_damage",
+            "amount": 25,
+            "duration": 3
+          },
+          "priority": 10
+        }
+      }
+    ]
+  },
+  {
+    "upgrade_id": "bullseye_mastery_3",
+    "skill_id": "bullseye",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "keen_eye_mastery_1",
+    "skill_id": "keen_eye",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mass_heal_mastery_1",
+    "skill_id": "mass_heal",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mass_heal_mastery_2",
+    "skill_id": "mass_heal",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mass_heal_mastery_3",
+    "skill_id": "mass_heal",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "divine_grace_mastery_1",
+    "skill_id": "divine_grace",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "smite_mastery_1",
+    "skill_id": "smite",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "smite_mastery_2",
+    "skill_id": "smite",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.03
+      }
+    ]
+  },
+  {
+    "upgrade_id": "smite_mastery_3",
+    "skill_id": "smite",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "battle_blessing_mastery_1",
+    "skill_id": "battle_blessing",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "battle_blessing_mastery_2",
+    "skill_id": "battle_blessing",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "battle_blessing_mastery_3",
+    "skill_id": "battle_blessing",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "martyrs_zeal_mastery_1",
+    "skill_id": "martyrs_zeal",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "minor_heal_mastery_1",
+    "skill_id": "minor_heal",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "minor_heal_mastery_2",
+    "skill_id": "minor_heal",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.range",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "minor_heal_mastery_3",
+    "skill_id": "minor_heal",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "gentle_aura_mastery_1",
+    "skill_id": "gentle_aura",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "healing_proficiency_mastery_1",
+    "skill_id": "healing_proficiency",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.value",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.value",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "first_aid_mastery_1",
+    "skill_id": "first_aid",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "first_aid_mastery_2",
+    "skill_id": "first_aid",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sword_proficiency_mastery_1",
+    "skill_id": "sword_proficiency",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.value",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "regeneration_mastery_1",
+    "skill_id": "regeneration",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.period",
+        "value": -1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.period",
+        "value": -1
+      },
+      {
+        "op": "add",
+        "path": "effects[2].params.period",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "human_resilience_mastery_1",
+    "skill_id": "human_resilience",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "second_wind_mastery_1",
+    "skill_id": "second_wind",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "second_wind_mastery_2",
+    "skill_id": "second_wind",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "adrenaline_rush_mastery_1",
+    "skill_id": "adrenaline_rush",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "adrenaline_rush_mastery_2",
+    "skill_id": "adrenaline_rush",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "human_tenacity_mastery_1",
+    "skill_id": "human_tenacity",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "humanitys_will_mastery_1",
+    "skill_id": "humanitys_will",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_bullet_mastery_1",
+    "skill_id": "magic_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_bullet_mastery_2",
+    "skill_id": "magic_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_hide_mastery_1",
+    "skill_id": "goblin_hide",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_hide_mastery_2",
+    "skill_id": "goblin_hide",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "danmaku_barrage_mastery_1",
+    "skill_id": "danmaku_barrage",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "danmaku_barrage_mastery_2",
+    "skill_id": "danmaku_barrage",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fairy_flight_mastery_1",
+    "skill_id": "fairy_flight",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fairy_mischief_mastery_1",
+    "skill_id": "fairy_mischief",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_smash_mastery_1",
+    "skill_id": "goblin_smash",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_smash_mastery_2",
+    "skill_id": "goblin_smash",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_resilience_mastery_1",
+    "skill_id": "goblin_resilience",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_ferocity_mastery_1",
+    "skill_id": "goblin_ferocity",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "hakurei_intuition_mastery_1",
+    "skill_id": "hakurei_intuition",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magicians_ambition_mastery_1",
+    "skill_id": "magicians_ambition",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "yin_yang_orb_mastery_1",
+    "skill_id": "yin_yang_orb",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "yin_yang_orb_mastery_2",
+    "skill_id": "yin_yang_orb",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "exorcism_ward_mastery_1",
+    "skill_id": "exorcism_ward",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "exorcism_ward_mastery_2",
+    "skill_id": "exorcism_ward",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fantasy_seal_mastery_1",
+    "skill_id": "fantasy_seal",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fantasy_seal_mastery_2",
+    "skill_id": "fantasy_seal",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fantasy_seal_mastery_3",
+    "skill_id": "fantasy_seal",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_missile_mastery_1",
+    "skill_id": "magic_missile",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_missile_mastery_2",
+    "skill_id": "magic_missile",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "ordinary_insight_mastery_1",
+    "skill_id": "ordinary_insight",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "master_spark_mastery_1",
+    "skill_id": "master_spark",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "upgrade_id": "master_spark_mastery_2",
+    "skill_id": "master_spark",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "master_spark_mastery_3",
+    "skill_id": "master_spark",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sunflower_barrage_power_1",
+    "skill_id": "sunflower_barrage",
+    "requires_level": 30,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      },
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.radius",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "charge_mastery_1",
+    "skill_id": "charge",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "charge_mastery_2",
+    "skill_id": "charge",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "battle_fortitude_mastery_1",
+    "skill_id": "battle_fortitude",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.period",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "holy_spark_mastery_1",
+    "skill_id": "holy_spark",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "holy_spark_mastery_2",
+    "skill_id": "holy_spark",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.crit_rate_formula.base",
+        "value": 0.03
+      }
+    ]
+  },
+  {
+    "upgrade_id": "aimed_shot_mastery_1",
+    "skill_id": "aimed_shot",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "aimed_shot_mastery_2",
+    "skill_id": "aimed_shot",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "disengage_mastery_1",
+    "skill_id": "disengage",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "disengage_mastery_2",
+    "skill_id": "disengage",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "activation_targeting[0].shape_params.range",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sneak_attack_mastery_1",
+    "skill_id": "sneak_attack",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 0.25
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stealth_mastery_1",
+    "skill_id": "stealth",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stealth_mastery_2",
+    "skill_id": "stealth",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.duration",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stab_mastery_1",
+    "skill_id": "stab",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stab_mastery_2",
+    "skill_id": "stab",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.duration",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "rogue_finesse_mastery_1",
+    "skill_id": "rogue_finesse",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_missile_mastery_1",
+    "skill_id": "magic_missile",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "magic_missile_mastery_2",
+    "skill_id": "magic_missile",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "set",
+        "path": "activation_targeting[0].selection_mode",
+        "value": "multiple"
+      },
+      {
+        "op": "set",
+        "path": "activation_targeting[0].max_picks",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mage_power_mastery_2",
+    "skill_id": "mage_power",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 15
+      }
+    ]
+  },
+  {
+    "upgrade_id": "gentle_aura_mastery_2",
+    "skill_id": "gentle_aura",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "append",
+        "path": "effects",
+        "value": {
+          "effect_id": "gentle_aura_spirit",
+          "type": "stat_modifier",
+          "params": {
+            "attribute": "spirit",
+            "amount": 1,
+            "duration": -1
+          }
+        }
+      },
+      {
+        "op": "append",
+        "path": "effects",
+        "value": {
+          "effect_id": "gentle_aura_presence",
+          "type": "stat_modifier",
+          "params": {
+            "attribute": "presence",
+            "amount": 1,
+            "duration": -1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mana_shield_mastery_1",
+    "skill_id": "mana_shield",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "mana_shield_mastery_2",
+    "skill_id": "mana_shield",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 15
+      }
+    ]
+  },
+  {
+    "upgrade_id": "aggressive_bloodletting_mastery_1",
+    "skill_id": "aggressive_bloodletting",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "unyielding_resolve_mastery_1",
+    "skill_id": "unyielding_resolve",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "unyielding_resolve_mastery_2",
+    "skill_id": "unyielding_resolve",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "exposed_wound_mastery_1",
+    "skill_id": "exposed_wound",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "exposed_wound_mastery_2",
+    "skill_id": "exposed_wound",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "healers_grace_mastery_1",
+    "skill_id": "healers_grace",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "restorative_echo_mastery_1",
+    "skill_id": "restorative_echo",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sacred_overflow_mastery_1",
+    "skill_id": "sacred_overflow",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "zealous_strikes_mastery_1",
+    "skill_id": "zealous_strikes",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "faltering_light_mastery_1",
+    "skill_id": "faltering_light",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "blinding_radiance_mastery_1",
+    "skill_id": "blinding_radiance",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_stance_mastery_1",
+    "skill_id": "reckless_stance",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_stance_mastery_2",
+    "skill_id": "reckless_stance",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": -3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "reckless_vigor_mastery_1",
+    "skill_id": "reckless_vigor",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stalwart_frame_mastery_1",
+    "skill_id": "stalwart_frame",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stalwart_frame_mastery_2",
+    "skill_id": "stalwart_frame",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "grim_endurance_mastery_1",
+    "skill_id": "grim_endurance",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "flame_bullet_mastery_1",
+    "skill_id": "flame_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "flame_bullet_mastery_2",
+    "skill_id": "flame_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_bullet_mastery_1",
+    "skill_id": "frost_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "frost_bullet_mastery_2",
+    "skill_id": "frost_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "verdant_bullet_mastery_1",
+    "skill_id": "verdant_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "verdant_bullet_mastery_2",
+    "skill_id": "verdant_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "toxic_bullet_mastery_1",
+    "skill_id": "toxic_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "toxic_bullet_mastery_2",
+    "skill_id": "toxic_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "light_bullet_mastery_1",
+    "skill_id": "light_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "light_bullet_mastery_2",
+    "skill_id": "light_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shock_bullet_mastery_1",
+    "skill_id": "shock_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shock_bullet_mastery_2",
+    "skill_id": "shock_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shadow_bullet_mastery_1",
+    "skill_id": "shadow_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "shadow_bullet_mastery_2",
+    "skill_id": "shadow_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "void_bullet_mastery_1",
+    "skill_id": "void_bullet",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "void_bullet_mastery_2",
+    "skill_id": "void_bullet",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.35
+      }
+    ]
+  },
+  {
+    "upgrade_id": "festering_wounds_mastery_1",
+    "skill_id": "festering_wounds",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "twisting_knife_mastery_1",
+    "skill_id": "twisting_knife",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "quick_reflexes_mastery_1",
+    "skill_id": "quick_reflexes",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fading_momentum_mastery_1",
+    "skill_id": "fading_momentum",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "evasive_retaliation_mastery_1",
+    "skill_id": "evasive_retaliation",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "evasive_retaliation_mastery_2",
+    "skill_id": "evasive_retaliation",
+    "requires_level": 5,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "marksmans_reload_mastery_1",
+    "skill_id": "marksmans_reload",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "focused_aim_mastery_1",
+    "skill_id": "focused_aim",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "opening_shot_mastery_1",
+    "skill_id": "opening_shot",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "measured_distance_mastery_1",
+    "skill_id": "measured_distance",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "fleet_footed_mastery_1",
+    "skill_id": "fleet_footed",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "running_advantage_mastery_1",
+    "skill_id": "running_advantage",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 15
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_bulwark_mastery_1",
+    "skill_id": "arcane_bulwark",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "upgrade_id": "warding_shroud_mastery_1",
+    "skill_id": "warding_shroud",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "spell_reflection_mastery_1",
+    "skill_id": "spell_reflection",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "efficient_casting_mastery_1",
+    "skill_id": "efficient_casting",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_recycling_mastery_1",
+    "skill_id": "arcane_recycling",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_tempo_mastery_1",
+    "skill_id": "arcane_tempo",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "faith_attunement_mastery_1",
+    "skill_id": "faith_attunement",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "youkai_buster_mastery_1",
+    "skill_id": "youkai_buster",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "purification_ofuda_mastery_1",
+    "skill_id": "purification_ofuda",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "purification_ofuda_mastery_2",
+    "skill_id": "purification_ofuda",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "persuasion_needles_mastery_1",
+    "skill_id": "persuasion_needles",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.damage_formula.base",
+        "value": 1
+      },
+      {
+        "op": "add",
+        "path": "effects[2].params.damage_formula.base",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "persuasion_needles_mastery_2",
+    "skill_id": "persuasion_needles",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "toxic_fortitude_mastery_1",
+    "skill_id": "toxic_fortitude",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 30
+      }
+    ]
+  },
+  {
+    "upgrade_id": "toxic_fortitude_mastery_2",
+    "skill_id": "toxic_fortitude",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 40
+      }
+    ]
+  },
+  {
+    "upgrade_id": "arcane_diligence_mastery_1",
+    "skill_id": "arcane_diligence",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stream_laser_mastery_1",
+    "skill_id": "stream_laser",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.damage_formula.base",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stream_laser_mastery_2",
+    "skill_id": "stream_laser",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.accuracy",
+        "value": 0.1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "stardust_missile_mastery_1",
+    "skill_id": "stardust_missile",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "cooldown",
+        "value": -1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "sunken_malice_mastery_1",
+    "skill_id": "sunken_malice",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "cinderproof_husk_mastery_1",
+    "skill_id": "cinderproof_husk",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 30
+      }
+    ]
+  },
+  {
+    "upgrade_id": "cinderproof_husk_mastery_2",
+    "skill_id": "cinderproof_husk",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 40
+      }
+    ]
+  },
+  {
+    "upgrade_id": "kindled_fury_mastery_1",
+    "skill_id": "kindled_fury",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "upgrade_id": "predators_instinct_mastery_1",
+    "skill_id": "predators_instinct",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "chitinous_hide_mastery_1",
+    "skill_id": "chitinous_hide",
+    "requires_level": 2,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 30
+      }
+    ]
+  },
+  {
+    "upgrade_id": "chitinous_hide_mastery_2",
+    "skill_id": "chitinous_hide",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 40
+      }
+    ]
+  },
+  {
+    "upgrade_id": "lingering_venom_mastery_1",
+    "skill_id": "lingering_venom",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "simmering_envy_mastery_1",
+    "skill_id": "simmering_envy",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[0].params.amount",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "upgrade_id": "loner_mastery_1",
+    "skill_id": "loner",
+    "requires_level": 3,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "upgrade_id": "solitary_malice_mastery_1",
+    "skill_id": "solitary_malice",
+    "requires_level": 4,
+    "ops": [
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "upgrade_id": "spirit_boost_mastery_1",
+    "skill_id": "spirit_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "spirit_boost_mastery_2",
+    "skill_id": "spirit_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "vitality_boost_mastery_1",
+    "skill_id": "vitality_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "vitality_boost_mastery_2",
+    "skill_id": "vitality_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "technique_boost_mastery_1",
+    "skill_id": "technique_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "technique_boost_mastery_2",
+    "skill_id": "technique_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "power_boost_mastery_1",
+    "skill_id": "power_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "power_boost_mastery_2",
+    "skill_id": "power_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "presence_boost_mastery_1",
+    "skill_id": "presence_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "presence_boost_mastery_2",
+    "skill_id": "presence_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "speed_boost_mastery_1",
+    "skill_id": "speed_boost",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "speed_boost_mastery_2",
+    "skill_id": "speed_boost",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "kedama_swiftness_mastery_1",
+    "skill_id": "kedama_swiftness",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "kedama_swiftness_mastery_2",
+    "skill_id": "kedama_swiftness",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_might_mastery_1",
+    "skill_id": "goblin_might",
+    "requires_level": 3,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "goblin_might_mastery_2",
+    "skill_id": "goblin_might",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 1 }
+    ]
+  },
+  {
+    "upgrade_id": "wheel_ghost_evasion_mastery_1",
+    "skill_id": "wheel_ghost_evasion",
+    "requires_level": 5,
+    "ops": [
+      { "op": "add", "path": "effects[0].params.amount", "value": 5 }
+    ]
+  }
+]

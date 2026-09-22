@@ -1,0 +1,207 @@
+[
+  {
+    "boss_id": "forest_warden",
+    "name": "Forest Warden",
+    "description": "A fairy who has watched over the forest for centuries. Placeholder boss \u2014 reskin later.",
+    "species_id": "fairy",
+    "min_depth": 1,
+    "base_hp": 40,
+    "base_mp": 20,
+    "base_sp": 15,
+    "attributes": {
+      "power": 6,
+      "technique": 8,
+      "speed": 10,
+      "vitality": 12,
+      "spirit": 10,
+      "presence": 5
+    },
+    "skills": [
+      "magic_bullet",
+      "spellcard_thicket_snare"
+    ],
+    "phases": [
+      {
+        "hp_fraction": 0.65,
+        "skill": "spellcard_thicket_snare"
+      }
+    ],
+    "recruit_hp": 28,
+    "recruit_mp": 18,
+    "recruit_sp": 16,
+    "loot_gold_range": [
+      30,
+      50
+    ]
+  },
+  {
+    "boss_id": "kisume",
+    "name": "Kisume",
+    "description": "A well-dwelling youkai of the Fantastic Blowhole. Aggressive in melee, drags anyone who tries to keep their distance right back in, and dives into her well to strike from ambush when wounded.",
+    "species_id": "youkai",
+    "innate_id": "kisume",
+    "min_depth": 1,
+    "base_hp": 35,
+    "base_mp": 15,
+    "base_sp": 20,
+    "attributes": {
+      "power": 10,
+      "technique": 6,
+      "speed": 6,
+      "vitality": 10,
+      "spirit": 8,
+      "presence": 5
+    },
+    "skills": [
+      "cinder_claw",
+      "well_pull",
+      "inferno_grasp"
+    ],
+    "phases": [
+      {
+        "hp_fraction": 0.5,
+        "skill": "well_dive"
+      }
+    ],
+    "recruit_hp": 30,
+    "recruit_mp": 15,
+    "recruit_sp": 20,
+    "loot_gold_range": [
+      30,
+      50
+    ],
+    "char": "K",
+    "color": [
+      0,
+      100,
+      0
+    ]
+  },
+  {
+    "boss_id": "yamame",
+    "name": "Yamame Kurodani",
+    "description": "A poison-weaving youkai of the Fantastic Blowhole. Keeps her distance and stacks poison from afar, weaving her prey into webs so they can't close in \u2014 but her power and technique mean getting close doesn't make her easy prey either.",
+    "species_id": "youkai",
+    "innate_id": "yamame",
+    "min_depth": 1,
+    "base_hp": 38,
+    "base_mp": 20,
+    "base_sp": 12,
+    "attributes": {
+      "power": 8,
+      "technique": 8,
+      "speed": 5,
+      "vitality": 8,
+      "spirit": 10,
+      "presence": 5
+    },
+    "skills": [
+      "venom_shot",
+      "web_shot"
+    ],
+    "phases": [
+      {
+        "hp_fraction": 0.7,
+        "skill": "trap_sign_capture_web"
+      },
+      {
+        "hp_fraction": 0.4,
+        "skill": "miasma_sign_filled_miasma"
+      }
+    ],
+    "recruit_hp": 30,
+    "recruit_mp": 20,
+    "recruit_sp": 12,
+    "loot_gold_range": [
+      30,
+      50
+    ],
+    "char": "Y",
+    "color": [
+      139,
+      69,
+      19
+    ]
+  },
+  {
+    "boss_id": "parsee",
+    "name": "Parsee Mizuhashi",
+    "description": "A bridge-dwelling youkai of envy from the Deep Road to Hell. Steals the strength of anyone who dares outshine her, mends her own wounds, and splits off a weaker copy of herself when pressed.",
+    "species_id": "youkai",
+    "innate_id": "parsee",
+    "min_depth": 1,
+    "base_hp": 42,
+    "base_mp": 25,
+    "base_sp": 15,
+    "attributes": {
+      "power": 9,
+      "technique": 9,
+      "speed": 9,
+      "vitality": 12,
+      "spirit": 18,
+      "presence": 9
+    },
+    "skills": [
+      "envious_glare",
+      "jealous_theft",
+      "envious_recovery",
+      "envious_seal",
+      "seething_grudge",
+      "grudge_detonation"
+    ],
+    "phases": [
+      {
+        "hp_fraction": 0.5,
+        "skill": "envy_sign_green_eyed_duplicate"
+      }
+    ],
+    "recruit_hp": 32,
+    "recruit_mp": 20,
+    "recruit_sp": 14,
+    "loot_gold_range": [
+      30,
+      50
+    ],
+    "char": "P",
+    "color": [
+      0,
+      200,
+      0
+    ]
+  },
+  {
+    "boss_id": "lake_guardian",
+    "name": "Lake Guardian",
+    "description": "A spirit bound to the misty lake, testing all who trespass. Placeholder boss \u2014 reskin later.",
+    "species_id": "fairy",
+    "min_depth": 1,
+    "base_hp": 45,
+    "base_mp": 20,
+    "base_sp": 15,
+    "attributes": {
+      "power": 8,
+      "technique": 6,
+      "speed": 5,
+      "vitality": 8,
+      "spirit": 8,
+      "presence": 5
+    },
+    "skills": [
+      "magic_bullet",
+      "spellcard_tidal_wrath"
+    ],
+    "phases": [
+      {
+        "hp_fraction": 0.65,
+        "skill": "spellcard_tidal_wrath"
+      }
+    ],
+    "recruit_hp": 30,
+    "recruit_mp": 16,
+    "recruit_sp": 16,
+    "loot_gold_range": [
+      30,
+      50
+    ]
+  }
+]
