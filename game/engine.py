@@ -137,6 +137,10 @@ class Engine:
         # `auto_explore_step`) instead of blocking on real input, and any
         # keypress cancels it. See `start_auto_explore`.
         self.auto_exploring: bool = False
+        self.save_slot: Optional[int] = None
+        # Set by the pause menu; main.py's loop autosaves and goes back to
+        # the title screen when it sees this.
+        self.return_to_title = False
 
         skill_data.load_all()
         item_data.load_all()
@@ -839,6 +843,8 @@ class Engine:
             self.message_log.add_message(
                 "You return to town.", color=message_log_module.INFO_COLOR, stack=False
             )
+        # Overwrites any mid-run save, which is what makes a lost run final.
+        self.save_game()
 
     def _reset_run_progress(self, entity: Entity) -> None:
         if entity.inventory is not None:
@@ -1338,18 +1344,30 @@ class Engine:
 
     # --- pause menu ------------------------------------------------------------
 
-    QUICKSAVE_NAME = "quicksave"
-
     def open_pause_menu(self) -> None:
         self.pause_menu_open = True
         options = [MenuOption("Resume", self.close_pause_menu)]
         if self.in_dungeon:
             options.append(MenuOption("Give Up (Return to Town)", self._confirm_give_up))
-        options.append(MenuOption("Save Game", self._menu_save_game))
-        if save_module.save_exists(self.QUICKSAVE_NAME):
-            options.append(MenuOption("Load Game", self._menu_load_game))
+        if self.save_slot is not None:
+            options.append(MenuOption("Save Game", self._menu_save_game))
+            if self.can_load:
+                options.append(
+                    MenuOption(
+                        "Load Last Save",
+                        self._confirm_load_game,
+                        description="Rewind to this playthrough's last save.",
+                    )
+                )
+        options.append(
+            MenuOption(
+                "Return to Main Menu",
+                self._request_main_menu,
+                description="Saves automatically before leaving.",
+            )
+        )
         self.active_menu = DialogueMenu(
-            speaker="Paused", prompt="Press Q to quit the game.", options=options
+            speaker="Paused", prompt="Press Q to save and quit the game.", options=options
         )
 
     def close_pause_menu(self) -> None:
@@ -1372,26 +1390,45 @@ class Engine:
             self.end_run(defeated=False)
 
     # --- save / load -----------------------------------------------------------
-    # A single fixed slot for now (named/multi-slot saves need a text-entry
-    # UI this project doesn't have yet); the underlying save/load is already
-    # slot-name-agnostic, so that's a UI-only follow-up.
+    # One slot per playthrough. Loading is a mid-run rewind only: in town it's
+    # disabled, and every return to town autosaves, so a lost run can't be
+    # undone (see end_run).
 
-    def save_to(self, name: str) -> None:
-        save_module.write_save(save_module.serialize_engine(self), name)
+    @property
+    def can_load(self) -> bool:
+        return self.in_dungeon and self.save_slot is not None and save_module.slot_exists(self.save_slot)
 
-    def load_from(self, name: str) -> None:
-        data = save_module.read_save(name)
-        save_module.apply_engine_state(self, data)
+    def save_game(self) -> None:
+        if self.save_slot is None:
+            return
+        save_module.write_slot(save_module.serialize_engine(self), self.save_slot)
+
+    def load_game(self) -> None:
+        save_module.apply_engine_state(self, save_module.read_slot(self.save_slot))
 
     def _menu_save_game(self) -> None:
-        self.save_to(self.QUICKSAVE_NAME)
+        self.save_game()
         self.close_pause_menu()
         self.message_log.add_message("Game saved.", color=message_log_module.INFO_COLOR, stack=False)
 
+    def _confirm_load_game(self) -> None:
+        self.active_menu = DialogueMenu(
+            speaker="Paused",
+            prompt="Load your last save? Progress since then is lost.",
+            options=[
+                MenuOption("Yes, load", self._menu_load_game),
+                MenuOption("No", self.open_pause_menu),
+            ],
+        )
+
     def _menu_load_game(self) -> None:
-        self.load_from(self.QUICKSAVE_NAME)
+        self.load_game()
         self.close_pause_menu()
         self.message_log.add_message("Game loaded.", color=message_log_module.INFO_COLOR, stack=False)
+
+    def _request_main_menu(self) -> None:
+        self.close_pause_menu()
+        self.return_to_title = True
 
     # --- character sheet -----------------------------------------------------
 

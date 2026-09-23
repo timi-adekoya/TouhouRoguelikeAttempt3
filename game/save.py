@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import itertools
+import os
+import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
@@ -13,17 +16,22 @@ from components.inventory import Inventory, ItemInstance
 from components.progression import ClassProgress, Progression
 from components.skills import SkillBook, SkillInstance
 from components.stats import Attributes, Stat, StatBlock
-from game import tile_types
+from game import location_data, tile_types
 from game.ai import BehaviorTreeController, FSMController, UtilityAIController
+from game.casting import ChargeState
+from game.effects import TimedEffectInstance
 from game.entity import Entity
 from game.game_map import GameMap
 from game.light_sources import DarknessSource, LightSource
+from game.targeting import TargetPoint
 
 if TYPE_CHECKING:
     from game.engine import Engine
 
-SAVE_VERSION = 1
+SAVE_VERSION = 2
 SAVE_DIR = Path(__file__).resolve().parent.parent / "saves"
+SLOT_COUNT = 3
+_LEGACY_QUICKSAVE = "quicksave"
 
 _CORE_ATTRIBUTES = ("power", "technique", "speed", "vitality", "spirit", "presence")
 
@@ -32,19 +40,71 @@ class SaveError(Exception):
     pass
 
 
-def _safe_name(name: str) -> str:
-    cleaned = "".join(c for c in name if c.isalnum() or c in "-_")
-    return cleaned or "save"
+@dataclass
+class SlotInfo:
+    slot: int
+    exists: bool
+    character: str = ""
+    level: int = 0
+    where: str = ""
+    saved_at: float = 0.0
+    legacy: bool = False
+
+    @property
+    def label(self) -> str:
+        if not self.exists:
+            return f"Slot {self.slot}: Empty"
+        stamp = time.strftime("%Y-%m-%d %H:%M", time.localtime(self.saved_at))
+        if self.legacy:
+            return f"Slot {self.slot}: Old save ({stamp})"
+        return f"Slot {self.slot}: {self.character} Lv{self.level} - {self.where} ({stamp})"
 
 
-def list_saves() -> List[str]:
-    if not SAVE_DIR.exists():
-        return []
-    return sorted(p.stem for p in SAVE_DIR.glob("*.msgpack"))
+def _slot_path(slot: int) -> Path:
+    return SAVE_DIR / f"slot_{slot}.msgpack"
 
 
-def save_exists(name: str) -> bool:
-    return (SAVE_DIR / f"{_safe_name(name)}.msgpack").exists()
+def slot_exists(slot: int) -> bool:
+    return _slot_path(slot).exists()
+
+
+def slot_info(slot: int) -> SlotInfo:
+    if not slot_exists(slot):
+        return SlotInfo(slot=slot, exists=False)
+    try:
+        meta = read_slot(slot).get("meta")
+    except Exception:
+        return SlotInfo(slot=slot, exists=True, character="(unreadable)")
+    if meta is None:
+        return SlotInfo(
+            slot=slot, exists=True, legacy=True, saved_at=_slot_path(slot).stat().st_mtime
+        )
+    return SlotInfo(
+        slot=slot,
+        exists=True,
+        character=meta.get("character", "?"),
+        level=meta.get("level", 0),
+        where=meta.get("where", "?"),
+        saved_at=meta.get("saved_at", 0.0),
+    )
+
+
+def all_slots() -> List[SlotInfo]:
+    return [slot_info(s) for s in range(1, SLOT_COUNT + 1)]
+
+
+def most_recent_slot() -> Optional[int]:
+    existing = [info for info in all_slots() if info.exists]
+    if not existing:
+        return None
+    return max(existing, key=lambda info: info.saved_at).slot
+
+
+def migrate_legacy_quicksave() -> None:
+    """Pre-slot builds wrote a single quicksave.msgpack; adopt it as slot 1."""
+    legacy = SAVE_DIR / f"{_LEGACY_QUICKSAVE}.msgpack"
+    if legacy.exists() and not slot_exists(1):
+        legacy.rename(_slot_path(1))
 
 
 # ---------------------------------------------------------------------------
@@ -330,6 +390,89 @@ def _load_game_map(data: dict) -> GameMap:
 # ---------------------------------------------------------------------------
 
 
+def _dump_target_point(tp: TargetPoint, index_of) -> dict:
+    return {"x": tp.x, "y": tp.y, "entity": index_of(tp.entity) if tp.entity is not None else None}
+
+
+def _load_target_point(data: dict, entities: List[Entity]) -> TargetPoint:
+    entity = entities[data["entity"]] if data["entity"] is not None else None
+    return TargetPoint(x=data["x"], y=data["y"], entity=entity)
+
+
+def _dump_charge(charge: ChargeState, index_of) -> dict:
+    return {
+        "skill_id": charge.instance.def_id,
+        "targets": [_dump_target_point(tp, index_of) for tp in charge.targets],
+        "extra_targets": [
+            [stage, [_dump_target_point(tp, index_of) for tp in tps]]
+            for stage, tps in charge.extra_targets.items()
+        ],
+        "turns_remaining": charge.turns_remaining,
+        "lock_movement": charge.lock_movement,
+        "lock_actions": charge.lock_actions,
+    }
+
+
+def _load_charge(data: dict, owner: Entity, entities: List[Entity]) -> Optional[ChargeState]:
+    instance = owner.skill_book.get(data["skill_id"]) if owner.skill_book is not None else None
+    if instance is None:
+        return None
+    return ChargeState(
+        instance=instance,
+        targets=[_load_target_point(tp, entities) for tp in data["targets"]],
+        extra_targets={
+            stage: [_load_target_point(tp, entities) for tp in tps] for stage, tps in data["extra_targets"]
+        },
+        turns_remaining=data["turns_remaining"],
+        lock_movement=data["lock_movement"],
+        lock_actions=data["lock_actions"],
+    )
+
+
+def _dump_timed_effect(effect: TimedEffectInstance, index_of) -> dict:
+    return {
+        "kind": effect.kind,
+        "target": index_of(effect.target),
+        "source": index_of(effect.source) if effect.source is not None else None,
+        "remaining_turns": effect.remaining_turns,
+        "payload": effect.payload,
+        "stacks": effect.stacks,
+    }
+
+
+def _load_timed_effect(data: dict, entities: List[Entity]) -> TimedEffectInstance:
+    return TimedEffectInstance(
+        kind=data["kind"],
+        target=entities[data["target"]],
+        remaining_turns=data["remaining_turns"],
+        payload=data["payload"],
+        source=entities[data["source"]] if data["source"] is not None else None,
+        stacks=data["stacks"],
+    )
+
+
+def _describe_location(engine: "Engine") -> str:
+    if engine.floor_depth == 0:
+        return "Town"
+    if engine.current_location is None:
+        return f"Tutorial F{engine.floor_depth}"
+    try:
+        name = location_data.location(engine.current_location).name
+    except KeyError:
+        name = engine.current_location
+    return f"{name} F{engine.location_floor_index}"
+
+
+def _build_meta(engine: "Engine") -> dict:
+    progression = engine.player.progression
+    return {
+        "character": engine.player.name,
+        "level": progression.species_level if progression is not None else 0,
+        "where": _describe_location(engine),
+        "saved_at": time.time(),
+    }
+
+
 def serialize_engine(engine: "Engine") -> Dict[str, Any]:
     """Full snapshot: floor history (indexed by depth), the player/party/
     downed references (by index into a dedup'd entity list, since the same
@@ -340,12 +483,14 @@ def serialize_engine(engine: "Engine") -> Dict[str, Any]:
     engine._save_current_floor()
 
     entity_ids: Dict[int, int] = {}
+    entity_objs: List[Entity] = []
     entities_data: List[dict] = []
 
     def index_of(entity: Entity) -> int:
         key = id(entity)
         if key not in entity_ids:
             entity_ids[key] = len(entities_data)
+            entity_objs.append(entity)
             entities_data.append(_dump_entity(entity))
         return entity_ids[key]
 
@@ -359,21 +504,42 @@ def serialize_engine(engine: "Engine") -> Dict[str, Any]:
             }
         )
 
+    player_index = index_of(engine.player)
+    party_indices = [index_of(e) for e in engine.party]
+    downed_indices = [index_of(e) for e in engine.downed]
+    timed_effects = [_dump_timed_effect(e, index_of) for e in engine.timed_effects]
+    pending_boss_index = index_of(engine.pending_boss) if engine.pending_boss is not None else None
+
+    # Cross-entity links resolved after the fact, since dumping them inline
+    # would recurse into index_of mid-append. The list can grow as we go.
+    i = 0
+    while i < len(entity_objs):
+        entity = entity_objs[i]
+        entities_data[i]["summoned_by"] = (
+            index_of(entity.summoned_by) if entity.summoned_by is not None else None
+        )
+        entities_data[i]["charging"] = (
+            _dump_charge(entity.charging, index_of) if entity.charging is not None else None
+        )
+        i += 1
+
     return {
         "version": SAVE_VERSION,
+        "meta": _build_meta(engine),
+        "timed_effects": timed_effects,
         "entities": entities_data,
         "floors": floors_data,
         "floor_depth": engine.floor_depth,
         "gold": engine.gold,
-        "player_index": index_of(engine.player),
-        "party_indices": [index_of(e) for e in engine.party],
-        "downed_indices": [index_of(e) for e in engine.downed],
+        "player_index": player_index,
+        "party_indices": party_indices,
+        "downed_indices": downed_indices,
         "unlocked_classes": list(engine.unlocked_classes),
         "current_location": engine.current_location,
         "location_floor_index": engine.location_floor_index,
         "location_floor_target": engine.location_floor_target,
         "location_entry_depth": engine.location_entry_depth,
-        "pending_boss_index": index_of(engine.pending_boss) if engine.pending_boss is not None else None,
+        "pending_boss_index": pending_boss_index,
         "pending_boss_id": engine.pending_boss_id,
         "knowledge": {
             "locations": list(engine.knowledge["locations"]),
@@ -387,8 +553,7 @@ def apply_engine_state(engine: "Engine", data: Dict[str, Any]) -> None:
     """Mutate an existing Engine in place to match a loaded save — avoids
     needing every holder of the Engine reference (event handler, main loop)
     to swap to a new object."""
-    if data.get("version") != SAVE_VERSION:
-        raise SaveError(f"Unsupported save version: {data.get('version')!r}")
+    data = _migrate(data)
 
     # Reused ItemInstance uids must not collide with newly-created items.
     max_uid = 0
@@ -403,6 +568,11 @@ def apply_engine_state(engine: "Engine", data: Dict[str, Any]) -> None:
     inventory_module._uid_counter = itertools.count(max_uid + 1)
 
     entities = [_load_entity(e) for e in data["entities"]]
+    for entity, entity_data in zip(entities, data["entities"]):
+        summoner = entity_data.get("summoned_by")
+        entity.summoned_by = entities[summoner] if summoner is not None else None
+        charge = entity_data.get("charging")
+        entity.charging = _load_charge(charge, entity, entities) if charge is not None else None
 
     floor_history = []
     for floor_data in data["floors"]:
@@ -437,22 +607,49 @@ def apply_engine_state(engine: "Engine", data: Dict[str, Any]) -> None:
         "bosses": set(knowledge.get("bosses", [])),
         "recruited_bosses": set(knowledge.get("recruited_bosses", [])),
     }
+    engine.timed_effects = [_load_timed_effect(e, entities) for e in data["timed_effects"]]
+    # Pending delayed triggers hold a live CastContext and aren't persisted;
+    # a save simply drops any not-yet-fired follow-up hits.
+    engine.delayed_triggers = []
+    engine.focus_target = None
+    engine.auto_exploring = False
     engine.active_menu = None
     engine.pause_menu_open = False
     engine.target_selector = None
+    engine.character_screen_open = False
+    engine.inspect_open = False
+    engine.message_log_expanded = False
+    engine.game_over = False
+    engine.update_camera()
     engine.update_fov()
 
 
-def write_save(data: Dict[str, Any], name: str) -> None:
+def _migrate(data: Dict[str, Any]) -> Dict[str, Any]:
+    version = data.get("version")
+    if version == 1:
+        # v1 never stored timed effects, charges or summoner links; their
+        # absence is handled by .get() defaults at load time.
+        data["timed_effects"] = []
+        version = data["version"] = 2
+    if version != SAVE_VERSION:
+        raise SaveError(f"Unsupported save version: {version!r}")
+    return data
+
+
+def write_slot(data: Dict[str, Any], slot: int) -> None:
     SAVE_DIR.mkdir(parents=True, exist_ok=True)
-    path = SAVE_DIR / f"{_safe_name(name)}.msgpack"
-    with open(path, "wb") as f:
+    path = _slot_path(slot)
+    # Write-then-rename so a crash mid-write (e.g. autosave on quit) can't
+    # leave a truncated save behind.
+    tmp = path.with_suffix(".tmp")
+    with open(tmp, "wb") as f:
         f.write(msgpack.packb(data, use_bin_type=True))
+    os.replace(tmp, path)
 
 
-def read_save(name: str) -> Dict[str, Any]:
-    path = SAVE_DIR / f"{_safe_name(name)}.msgpack"
+def read_slot(slot: int) -> Dict[str, Any]:
+    path = _slot_path(slot)
     if not path.exists():
-        raise SaveError(f"No such save: {name!r}")
+        raise SaveError(f"No save in slot {slot}")
     with open(path, "rb") as f:
         return msgpack.unpackb(f.read(), raw=False, strict_map_key=False)
