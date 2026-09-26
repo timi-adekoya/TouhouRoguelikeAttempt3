@@ -2035,6 +2035,11 @@
         "op": "add",
         "path": "effects[0].params.amount",
         "value": 2
+      },
+      {
+        "op": "add",
+        "path": "effects[1].params.amount",
+        "value": 5
       }
     ]
   },

@@ -5963,7 +5963,7 @@
   {
     "skill_id": "arcane_bulwark",
     "name": "Arcane Bulwark",
-    "description": "Flat bonus to magic defense.",
+    "description": "Flat bonus to magic defense and max MP.",
     "rarity": "common",
     "category": "passive",
     "tree": [
@@ -5983,6 +5983,15 @@
         "params": {
           "attribute": "magic_defense",
           "amount": 3,
+          "duration": -1
+        }
+      },
+      {
+        "effect_id": "arcane_bulwark_mp",
+        "type": "stat_modifier",
+        "params": {
+          "attribute": "mp",
+          "amount": 10,
           "duration": -1
         }
       }
