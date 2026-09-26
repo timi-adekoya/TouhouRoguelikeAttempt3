@@ -384,7 +384,12 @@ def resolve_weapon_attack(
 
 
 def resolve_skill_damage(
-    engine: "Engine", caster: Optional[Entity], target: Entity, params: dict, tags: list
+    engine: "Engine",
+    caster: Optional[Entity],
+    target: Entity,
+    params: dict,
+    tags: list,
+    cast_bonuses: Optional[dict] = None,
 ) -> Optional[Tuple[int, int]]:
     """A damage-dealing skill effect that's been given its own
     damage_formula plays by the same rules a weapon attack does: a hit roll,
@@ -394,14 +399,23 @@ def resolve_skill_damage(
     damage_formula just use their flat `amount` and skip the hit roll
     entirely — content that hasn't been converted yet keeps working
     unchanged. Returns (damage, pre_defense), or None on a miss (distinct
-    from 0 damage)."""
+    from 0 damage).
+
+    `cast_bonuses` is a per-cast cache: one-shot bonuses (Sneak Attack,
+    evasion stacks) are consumed on the cast's first damage roll and reused
+    for every other hit/target of that same cast."""
     damage_formula = params.get("damage_formula")
     if damage_formula is None or caster is None or caster.stats is None:
         amount = params.get("amount", 0)
         return amount, amount
 
-    stealth_bonus = _consume_stealth_bonus(engine, caster)
-    evasion_stack_bonus = _consume_evasion_stacks(caster)
+    if cast_bonuses is None:
+        cast_bonuses = {}
+    if "stealth" not in cast_bonuses:
+        cast_bonuses["stealth"] = _consume_stealth_bonus(engine, caster)
+        cast_bonuses["evasion_stacks"] = _consume_evasion_stacks(caster)
+    stealth_bonus = cast_bonuses["stealth"]
+    evasion_stack_bonus = cast_bonuses["evasion_stacks"]
 
     # A skill can grant itself a bonus conditioned on another of the
     # caster's own buffs currently being up (e.g. Aimed Shot reading

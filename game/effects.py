@@ -116,7 +116,9 @@ def _instant_damage_heal(engine, ctx, caster, tp, effect):
                     f"{tp.entity.name} is no longer {requires_status['status']}.", color=message_log.INFO_COLOR
                 )
 
-        resolved = combat.resolve_skill_damage(engine, caster, tp.entity, effect.params, ctx.skill.tags)
+        resolved = combat.resolve_skill_damage(
+            engine, caster, tp.entity, effect.params, ctx.skill.tags, cast_bonuses=ctx.damage_bonuses
+        )
         if resolved is None:
             return  # missed — no damage, no on_hit chain
         amount, pre_defense = resolved

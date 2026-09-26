@@ -69,6 +69,9 @@ class CastContext:
         self.instance = instance
         self.skill = instance.resolved
         self.targets = targets
+        # One-shot damage bonuses consumed by this cast's first damage roll,
+        # shared by all its hits/targets (see combat.resolve_skill_damage).
+        self.damage_bonuses: Dict[str, float] = {}
         # Resolved targets from any activation_targeting stage beyond the
         # first (e.g. stage 1's destination tile for a two-stage
         # teleport-other skill), keyed by stage index. Root effects always
