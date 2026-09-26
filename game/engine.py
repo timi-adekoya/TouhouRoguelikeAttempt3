@@ -622,6 +622,9 @@ class Engine:
         charge = entity.charging
         if charge is None:
             return
+        if charge.started_this_turn:
+            charge.started_this_turn = False
+            return
         charge.turns_remaining -= 1
         if charge.turns_remaining <= 0:
             entity.charging = None

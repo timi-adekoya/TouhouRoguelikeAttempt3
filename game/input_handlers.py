@@ -4,6 +4,8 @@ from typing import Optional
 
 import tcod.event
 
+from game.actions import WaitAction
+
 MOVE_KEYS = {
     tcod.event.KeySym.UP: (0, -1),
     tcod.event.KeySym.DOWN: (0, 1),
@@ -128,6 +130,10 @@ class EventHandler(tcod.event.EventDispatch[None]):
             event.sym == tcod.event.KeySym.COMMA and shift_held
         ):
             self.engine.try_use_stairs_up()
+            return
+
+        if event.sym in (tcod.event.KeySym.PERIOD, tcod.event.KeySym.KP_5):
+            self.engine.perform_player_action(WaitAction(self.engine.player))
             return
 
         move = MOVE_KEYS.get(event.sym)

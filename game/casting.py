@@ -37,6 +37,9 @@ class ChargeState:
         self.turns_remaining = turns_remaining
         self.lock_movement = lock_movement
         self.lock_actions = lock_actions
+        # The turn the charge starts on doesn't count toward it; otherwise a
+        # 1-turn charge would resolve before anyone else got to act.
+        self.started_this_turn = True
 
 
 class _ResolvedWrapper:
