@@ -49,6 +49,32 @@
     }
   },
   {
+    "item_id": "sunflower_danmaku",
+    "name": "Sunflower Danmaku",
+    "category": "equippable",
+    "slot": "mainhand",
+    "rarity": "common",
+    "tags": [
+      "natural",
+      "ranged"
+    ],
+    "enchant_slots": 0,
+    "range": 3,
+    "damage_formula": {
+      "base": 1,
+      "scaling": {
+        "power": 0.3,
+        "spirit": 0.3
+      }
+    },
+    "crit_rate_formula": {
+      "base": 0.01
+    },
+    "crit_damage_formula": {
+      "base": 1.2
+    }
+  },
+  {
     "item_id": "tackle",
     "name": "Tackle",
     "category": "equippable",
