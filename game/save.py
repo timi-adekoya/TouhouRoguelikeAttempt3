@@ -14,7 +14,7 @@ import components.inventory as inventory_module
 from components.character import Character
 from components.inventory import Inventory, ItemInstance
 from components.progression import ClassProgress, Progression
-from components.skills import SkillBook, SkillInstance
+from components.skills import CATEGORY_PASSIVE, SkillBook, SkillInstance
 from components.stats import Attributes, Stat, StatBlock
 from game import location_data, tile_types
 from game.ai import BehaviorTreeController, BossController, FSMController, UtilityAIController
@@ -613,6 +613,13 @@ def apply_engine_state(engine: "Engine", data: Dict[str, Any]) -> None:
         "recruited_bosses": set(knowledge.get("recruited_bosses", [])),
     }
     engine.timed_effects = [_load_timed_effect(e, entities) for e in data["timed_effects"]]
+    # Resize every passive's held bonus to what the current data says, so a
+    # balance change to a passive applies to existing saves immediately.
+    for entity in entities:
+        if entity.skill_book is None:
+            continue
+        for instance in entity.skill_book.by_category(CATEGORY_PASSIVE):
+            engine._reapply_passive(entity, instance)
     # Pending delayed triggers hold a live CastContext and aren't persisted;
     # a save simply drops any not-yet-fired follow-up hits.
     engine.delayed_triggers = []

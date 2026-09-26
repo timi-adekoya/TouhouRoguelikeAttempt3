@@ -5982,7 +5982,7 @@
         "type": "stat_modifier",
         "params": {
           "attribute": "magic_defense",
-          "amount": 8,
+          "amount": 3,
           "duration": -1
         }
       }

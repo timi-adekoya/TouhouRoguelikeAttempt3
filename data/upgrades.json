@@ -2034,7 +2034,7 @@
       {
         "op": "add",
         "path": "effects[0].params.amount",
-        "value": 4
+        "value": 2
       }
     ]
   },

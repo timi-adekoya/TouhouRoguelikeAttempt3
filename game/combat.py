@@ -549,6 +549,10 @@ def apply_damage(
     if target.stats.hp.is_empty:
         return 0
 
+    # The hit before armor and before any of the target's own mitigation;
+    # both Warding perks key off this.
+    raw_incoming = pre_defense if pre_defense is not None else amount
+
     # Warding (Mage) capstone: toggleable — bounces a portion of the RAW
     # incoming hit (before armor and before any of the target's own
     # mitigation: Endurance, Reckless Stance, Mana Shield, Ward) back at
@@ -562,8 +566,7 @@ def apply_damage(
         and source is not target
         and source.stats is not None
     ):
-        base = pre_defense if pre_defense is not None else amount
-        reflected_amount = _round_half_up(base * reflect_percent / 100)
+        reflected_amount = _round_half_up(raw_incoming * reflect_percent / 100)
         if reflected_amount > 0:
             apply_damage(engine, target, source, reflected_amount, cause="Spell Reflection", _reflected=True)
 
@@ -627,15 +630,15 @@ def apply_damage(
         text = f"{source_name} hits {target.name} for {dealt}."
     engine.message_log.add_message(text, color=message_log.DAMAGE_COLOR)
 
-    # Warding (Mage) mid perk: a portion of the damage that just landed
-    # (post-mitigation, whatever actually got through) is banked as
-    # temporary HP for `ward_duration` turns — absorbed first on the next
-    # hit(s), see above. Unspent temp HP just expires, it doesn't carry over.
+    # Warding (Mage) mid perk: a portion of the raw incoming hit (before
+    # armor and mitigation) is banked as temporary HP for `ward_duration`
+    # turns — absorbed first on the next hit(s), see above. Unspent temp HP
+    # just expires, it doesn't carry over.
     ward_percent = target.stats.modifiers.get("ward_percent", 0.0)
-    if not periodic and ward_percent > 0 and dealt > 0:
+    if not periodic and ward_percent > 0 and raw_incoming > 0:
         from game.effects import TimedEffectInstance  # deferred: avoids a module cycle with effects.py
 
-        shield_gain = _round_half_up(dealt * ward_percent / 100)
+        shield_gain = _round_half_up(raw_incoming * ward_percent / 100)
         if shield_gain > 0:
             engine.message_log.add_message(
                 f"{target.name}'s Warding Shroud banks {shield_gain} temporary HP.", color=message_log.INFO_COLOR

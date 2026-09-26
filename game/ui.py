@@ -44,12 +44,18 @@ def _render_bar(
     maximum: int,
     label: str,
     color: Tuple[int, int, int],
+    suffix: str = "",
 ) -> None:
     filled = int(width * current / maximum) if maximum > 0 else 0
     console.draw_rect(x=x, y=y, width=width, height=1, ch=ord(" "), bg=(40, 40, 40))
     if filled > 0:
         console.draw_rect(x=x, y=y, width=filled, height=1, ch=ord(" "), bg=color)
-    console.print(x, y, f"{label} {current}/{maximum}", fg=(255, 255, 255))
+    console.print(x, y, f"{label} {current}/{maximum}{suffix}", fg=(255, 255, 255))
+
+
+def _temp_hp_suffix(entity: Entity) -> str:
+    temp_hp = int(entity.stats.modifiers.get("temp_hp_current", 0)) if entity.stats is not None else 0
+    return f" (+{temp_hp})" if temp_hp > 0 else ""
 
 
 def render_hud(
@@ -73,7 +79,10 @@ def render_hud(
     if entity.stats is not None:
         stats = entity.stats
         bar_width = console.width - 2
-        _render_bar(console, 1, hud_y + 1, bar_width, stats.hp.current, stats.hp.max_value, "HP", (150, 30, 30))
+        _render_bar(
+            console, 1, hud_y + 1, bar_width, stats.hp.current, stats.hp.max_value, "HP", (150, 30, 30),
+            suffix=_temp_hp_suffix(entity),
+        )
         _render_bar(console, 1, hud_y + 2, bar_width, stats.mp.current, stats.mp.max_value, "MP", (30, 30, 150))
         _render_bar(console, 1, hud_y + 3, bar_width, stats.sp.current, stats.sp.max_value, "SP", (30, 140, 30))
         if stats.faith is not None:
@@ -89,6 +98,7 @@ def render_hud(
         _render_bar(
             console, 1, party_row, console.width - 2,
             member.stats.hp.current, member.stats.hp.max_value, member.name, (110, 40, 40),
+            suffix=_temp_hp_suffix(member),
         )
         party_row += 1
 
