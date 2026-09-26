@@ -149,6 +149,26 @@ def resolve_targets(
     return points
 
 
+def remaining_picks(
+    engine: "Engine",
+    caster: Entity,
+    targeting: ActivationTargetingDef,
+    picked: List[TargetPoint],
+) -> List[TargetPoint]:
+    """For `selection_mode: "multiple"`: every other legal single target the
+    caster could still add (not already picked), nearest first."""
+    taken = {id(tp.entity) for tp in picked}
+    candidates = []
+    for entity in engine.entities:
+        if entity.stats is None or id(entity) in taken:
+            continue
+        resolved = resolve_targets(engine, caster, targeting, (entity.x, entity.y))
+        if resolved and resolved[0].entity is entity:
+            candidates.append(resolved[0])
+    candidates.sort(key=lambda tp: (tp.x - caster.x) ** 2 + (tp.y - caster.y) ** 2)
+    return candidates
+
+
 def preview_tiles(
     engine: "Engine",
     caster: Entity,

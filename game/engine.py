@@ -335,9 +335,49 @@ class Engine:
         if len(stages) > 1:
             self._begin_multi_stage_cast(instance, 0, {})
             return
+        if stages[0].selection_mode == "multiple" and stages[0].max_picks > 1:
+            self._begin_multi_pick_cast(instance)
+            return
         self.target_selector = TargetSelector(
             self, self.player, stages[0], lambda pos: self.try_player_cast(instance.def_id, pos)
         )
+
+    def _begin_multi_pick_cast(self, instance: SkillInstance) -> None:
+        """`selection_mode: "multiple"`: pick up to `max_picks` distinct
+        targets one at a time. Confirming an empty/already-picked tile fires
+        early at whatever's picked; it also fires once no legal targets are
+        left to add."""
+        stage = instance.resolved.activation_targeting[0]
+        picked: List[TargetPoint] = []
+
+        def fire() -> bool:
+            if not casting.cast_skill(self, self.player, instance, picked):
+                return False
+            self._end_player_turn()
+            return True
+
+        def on_confirm(pos: Tuple[int, int]) -> bool:
+            resolved = targeting.resolve_targets(self, self.player, stage, pos)
+            already = bool(resolved) and any(tp.entity is resolved[0].entity for tp in picked)
+            if not resolved or already:
+                if picked:
+                    return fire()
+                self.message_log.add_message("No valid target.", color=message_log_module.INFO_COLOR)
+                return False
+            picked.append(resolved[0])
+            remaining = targeting.remaining_picks(self, self.player, stage, picked)
+            if len(picked) >= stage.max_picks or not remaining:
+                return fire()
+            self.message_log.add_message(
+                f"Target {len(picked)}/{stage.max_picks}: {resolved[0].entity.name}. "
+                "Pick another, or confirm an empty tile to fire now.",
+                color=message_log_module.INFO_COLOR,
+                stack=False,
+            )
+            self.target_selector.x, self.target_selector.y = remaining[0].x, remaining[0].y
+            return False
+
+        self.target_selector = TargetSelector(self, self.player, stage, on_confirm)
 
     def _begin_multi_stage_cast(
         self, instance: SkillInstance, stage_index: int, prior_targets: Dict[int, List[TargetPoint]]

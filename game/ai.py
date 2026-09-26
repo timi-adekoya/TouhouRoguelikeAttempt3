@@ -311,6 +311,8 @@ def choose_attack(engine: "Engine", entity: Entity, target: Entity) -> Optional[
         instance, stage = ranged
         targets = targeting.resolve_targets(engine, entity, stage, (target.x, target.y))
         if targets:
+            if stage.selection_mode == "multiple" and stage.max_picks > 1:
+                targets += targeting.remaining_picks(engine, entity, stage, targets)[: stage.max_picks - 1]
             return CastSkillAction(entity, instance, targets)
     item = find_usable_damage_item(entity, target, distance)
     if item is not None:

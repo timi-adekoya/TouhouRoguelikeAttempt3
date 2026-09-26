@@ -1395,30 +1395,6 @@
     ]
   },
   {
-    "upgrade_id": "magic_missile_mastery_1",
-    "skill_id": "magic_missile",
-    "requires_level": 2,
-    "ops": [
-      {
-        "op": "add",
-        "path": "effects[0].params.damage_formula.base",
-        "value": 2
-      }
-    ]
-  },
-  {
-    "upgrade_id": "magic_missile_mastery_2",
-    "skill_id": "magic_missile",
-    "requires_level": 4,
-    "ops": [
-      {
-        "op": "add",
-        "path": "cooldown",
-        "value": -1
-      }
-    ]
-  },
-  {
     "upgrade_id": "ordinary_insight_mastery_1",
     "skill_id": "ordinary_insight",
     "requires_level": 3,
