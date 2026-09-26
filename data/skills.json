@@ -4689,7 +4689,7 @@
     "rarity": "common",
     "category": "active",
     "cost": {},
-    "cooldown": 10,
+    "cooldown": 20,
     "tree": [
       {
         "node_id": "stealth_t1",

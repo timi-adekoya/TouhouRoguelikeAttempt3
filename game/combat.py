@@ -14,6 +14,9 @@ if TYPE_CHECKING:
 
 UNARMED_DAMAGE = 2
 UNARMED_NAME = "an unarmed strike"
+# Fraction of Sneak Attack's bonus a charged skill keeps: stealth can still
+# open for it, but a telegraphed charge shouldn't multiply a full ambush.
+CHARGED_SNEAK_ATTACK_SCALE = 0.25
 
 # Recognized element tags — reused directly as skill/weapon `tags` entries
 # (e.g. Flame Bullet is tagged ["magic", "fire"]). A `resist_<element>` combat
@@ -412,7 +415,8 @@ def resolve_skill_damage(
     if cast_bonuses is None:
         cast_bonuses = {}
     if "stealth" not in cast_bonuses:
-        cast_bonuses["stealth"] = _consume_stealth_bonus(engine, caster)
+        sneak = _consume_stealth_bonus(engine, caster) - 1.0
+        cast_bonuses["stealth"] = 1.0 + sneak * cast_bonuses.get("sneak_attack_scale", 1.0)
         cast_bonuses["evasion_stacks"] = _consume_evasion_stacks(caster)
     stealth_bonus = cast_bonuses["stealth"]
     evasion_stack_bonus = cast_bonuses["evasion_stacks"]

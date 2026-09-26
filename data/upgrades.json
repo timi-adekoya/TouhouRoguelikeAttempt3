@@ -1291,7 +1291,7 @@
       {
         "op": "add",
         "path": "cooldown",
-        "value": -2
+        "value": -3
       }
     ]
   },

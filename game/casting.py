@@ -267,6 +267,7 @@ def resolve_charge(engine: "Engine", caster: Entity, charge: ChargeState) -> Non
         return
 
     ctx = CastContext(engine, caster, instance, live_targets, charge.extra_targets)
+    ctx.damage_bonuses["sneak_attack_scale"] = combat.CHARGED_SNEAK_ATTACK_SCALE
     for effect in sorted(skill.effects, key=lambda e: -e.priority):
         if effect.targeting == "contextual":
             continue
