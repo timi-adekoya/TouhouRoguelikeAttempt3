@@ -116,6 +116,23 @@ class MeleeAttackAction(Action):
             combat.apply_damage(engine, self.entity, self.target, damage, cause=cause, tags=["melee"])
 
 
+class RangedAttackAction(Action):
+    """A basic attack with a ranged weapon at a target within its range and
+    line of sight (validated by whoever picked the target)."""
+
+    def __init__(self, entity: Entity, target: Entity):
+        super().__init__(entity)
+        self.target = target
+
+    def perform(self, engine: "Engine") -> None:
+        if _blocked_by_charge(engine, self.entity, "actions"):
+            return
+        result = combat.resolve_weapon_attack(engine, self.entity, self.target, ranged=True)
+        if result is not None:
+            damage, cause = result
+            combat.apply_damage(engine, self.entity, self.target, damage, cause=cause, tags=["ranged"])
+
+
 class CastSkillAction(Action):
     """Cast a resolved skill at pre-resolved targets. Used by the player's
     skill menu and by AI controllers alike — any actor can drive a skill

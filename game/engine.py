@@ -21,7 +21,7 @@ from components.skills import (
 )
 from components.stats import RESOURCE_POOLS, Attributes, StatBlock, apply_stat_modifier, revert_stat_modifier
 from game import bestiary, casting, combat, equipment, fov, inspect_text, item_data, location_data, message_log as message_log_module, save as save_module, skill_data, targeting, tile_types, ui
-from game.actions import Action, MeleeAttackAction, MovementAction, SwapPlacesAction, WaitAction
+from game.actions import Action, MeleeAttackAction, MovementAction, RangedAttackAction, SwapPlacesAction, WaitAction
 from game import ai
 from game.ai import UtilityAIController
 from game import effects as effects_module
@@ -382,6 +382,29 @@ class Engine:
 
     def cancel_targeting(self) -> None:
         self.target_selector = None
+
+    def open_fire_selector(self) -> None:
+        """Basic attack with an equipped ranged weapon: pick a target in the
+        weapon's range and line of sight. Costs a turn once confirmed."""
+        weapon = equipment.equipped_weapon(self.player)
+        if weapon is None or not weapon.is_ranged:
+            self.message_log.add_message("You need a ranged weapon equipped to fire.", color=message_log_module.INFO_COLOR)
+            return
+        if weapon.ammo_type is not None and not equipment.has_ammo(self.player, weapon):
+            self.message_log.add_message(f"{self.player.name} is out of ammo!", color=message_log_module.INFO_COLOR)
+            return
+        stage = equipment.ranged_attack_stage(weapon)
+
+        def on_confirm(pos: Tuple[int, int]) -> bool:
+            resolved = targeting.resolve_targets(self, self.player, stage, pos)
+            target = resolved[0].entity if resolved else None
+            if target is None:
+                self.message_log.add_message("No valid target.", color=message_log_module.INFO_COLOR)
+                return False
+            self.perform_player_action(RangedAttackAction(self.player, target))
+            return True
+
+        self.target_selector = TargetSelector(self, self.player, stage, on_confirm)
 
     def open_mark_target_selector(self) -> None:
         """Free (no turn cost) focus-fire designation: opens the same map

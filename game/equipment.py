@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Dict, List, Optional
 
 from components.inventory import ItemInstance
 from components.items import EquippableDef, WeaponDef
-from components.skills import EffectDef, SkillInstance
+from components.skills import ActivationTargetingDef, EffectDef, SkillInstance
 from components.stats import apply_stat_modifier, revert_stat_modifier
 from game import item_data, message_log
 
@@ -146,3 +146,19 @@ def equipped_weapon(entity: "Entity") -> Optional[WeaponDef]:
         return None
     definition = instance.definition
     return definition if isinstance(definition, WeaponDef) else None
+
+
+def has_ammo(entity: "Entity", weapon: WeaponDef) -> bool:
+    if weapon.ammo_type is None:
+        return True
+    ammo = entity.inventory.find_tagged(weapon.ammo_type) if entity.inventory is not None else None
+    return ammo is not None and ammo.quantity > 0
+
+
+def ranged_attack_stage(weapon: WeaponDef) -> ActivationTargetingDef:
+    """Targeting for a ranged weapon's basic attack, shared by the player's
+    fire command and AI so both obey the same range/line-of-sight rules."""
+    return ActivationTargetingDef(
+        selection_mode="single", range_shape="point", shape_params={"range": weapon.range},
+        restriction="enemy", target_kind="entity",
+    )

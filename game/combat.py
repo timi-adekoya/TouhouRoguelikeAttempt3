@@ -271,14 +271,22 @@ def _award_kill_exp(engine: "Engine", source: Optional[Entity], target: Entity, 
         _award_species_exp(engine, entity, amount)
 
 
-def resolve_weapon_attack(engine: "Engine", attacker: Entity, target: Entity) -> Optional[Tuple[int, str]]:
+def resolve_weapon_attack(
+    engine: "Engine", attacker: Entity, target: Entity, *, ranged: bool = False
+) -> Optional[Tuple[int, str]]:
     """(damage, cause) a mainhand weapon attack deals, after a hit roll,
     crit roll, and the target's armor/elemental resistance. Returns None if
-    the attack can't happen (out of ammo, insufficient MP, or a miss) — the
-    bump still consumes a turn either way."""
+    the attack can't happen (out of ammo on a ranged shot, insufficient MP,
+    or a miss) — the turn is still consumed either way. A melee bump with an
+    ammo weapon that's out of ammo falls back to an unarmed strike."""
+    weapon = equipment.equipped_weapon(attacker)
+    if weapon is not None and not equipment.has_ammo(attacker, weapon):
+        if ranged:
+            engine.message_log.add_message(f"{attacker.name} is out of ammo!", color=message_log.INFO_COLOR)
+            return None
+        weapon = None
     stealth_bonus = _consume_stealth_bonus(engine, attacker)
     evasion_stack_bonus = _consume_evasion_stacks(attacker)
-    weapon = equipment.equipped_weapon(attacker)
     if weapon is None or attacker.stats is None:
         if not roll_hit(engine, attacker, target):
             engine.message_log.add_message(
@@ -291,10 +299,7 @@ def resolve_weapon_attack(engine: "Engine", attacker: Entity, target: Entity) ->
         weapon_tags: list = []
     else:
         if weapon.ammo_type is not None:
-            ammo = attacker.inventory.find_tagged(weapon.ammo_type) if attacker.inventory else None
-            if ammo is None or ammo.quantity <= 0:
-                engine.message_log.add_message(f"{attacker.name} is out of ammo!", color=message_log.INFO_COLOR)
-                return None
+            ammo = attacker.inventory.find_tagged(weapon.ammo_type)
             # Marksman (Ranger) minor perk: a chance to not consume the ammo
             # at all.
             save_chance = attacker.stats.modifiers.get("ammo_save_chance", 0.0) / 100

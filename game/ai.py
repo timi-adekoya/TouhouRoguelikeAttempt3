@@ -15,6 +15,7 @@ from game.actions import (
     CastSkillAction,
     MeleeAttackAction,
     MovementAction,
+    RangedAttackAction,
     SwapPlacesAction,
     UseItemAction,
     WaitAction,
@@ -302,8 +303,8 @@ def find_usable_damage_item(
 
 def choose_attack(engine: "Engine", entity: Entity, target: Entity) -> Optional[Action]:
     """Best available way to hurt `target` right now: a ready ranged skill,
-    then a ready offensive item, then melee if adjacent. None if nothing
-    applies (out of melee range and nothing else reaches)."""
+    then a ready offensive item, then a ranged weapon shot, then melee if
+    adjacent. None if nothing applies (out of range and nothing reaches)."""
     distance = chebyshev(entity, target)
     ranged = find_ready_ranged_skill(entity, target, distance)
     if ranged is not None:
@@ -317,6 +318,11 @@ def choose_attack(engine: "Engine", entity: Entity, target: Entity) -> Optional[
         targets = targeting.resolve_targets(engine, entity, stage, (target.x, target.y))
         if targets:
             return UseItemAction(entity, instance, targets)
+    weapon = equipment.equipped_weapon(entity)
+    if weapon is not None and weapon.is_ranged and distance > 1 and equipment.has_ammo(entity, weapon):
+        stage = equipment.ranged_attack_stage(weapon)
+        if targeting.resolve_targets(engine, entity, stage, (target.x, target.y)):
+            return RangedAttackAction(entity, target)
     if distance <= 1:
         return MeleeAttackAction(entity, target)
     return None
@@ -735,6 +741,8 @@ def _auto_equip_if_better(engine: "Engine", entity: Entity, instance) -> None:
     definition = instance.definition
     if not isinstance(definition, EquippableDef) or entity.stats is None:
         return
+    if isinstance(definition, WeaponDef) and not equipment.has_ammo(entity, definition):
+        return  # a bow with no arrows would leave the ally punching
     current = entity.inventory.equipped.get(definition.slot)
     if current is None:
         equipment.equip(engine, entity, instance)

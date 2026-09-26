@@ -82,6 +82,12 @@ class WeaponDef(EquippableDef):
     accuracy: float = 1.0
     hit_rate_formula: Dict[str, Any] = field(default_factory=dict)
     ignore_evasion: bool = False
+    # Tiles a basic attack can reach via the fire command; 1 = melee only.
+    range: int = 1
+
+    @property
+    def is_ranged(self) -> bool:
+        return self.range > 1
 
 
 @dataclass
@@ -156,6 +162,7 @@ def parse_equippable(raw: Dict[str, Any]) -> EquippableDef:
             accuracy=raw.get("accuracy", 1.0),
             hit_rate_formula=raw.get("hit_rate_formula", {}),
             ignore_evasion=raw.get("ignore_evasion", False),
+            range=raw.get("range", 1),
         )
     return EquippableDef(**common)
 

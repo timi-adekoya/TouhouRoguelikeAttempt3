@@ -96,6 +96,10 @@ class EventHandler(tcod.event.EventDispatch[None]):
             self.engine.try_pickup()
             return
 
+        if event.sym == tcod.event.KeySym.f:
+            self.engine.open_fire_selector()
+            return
+
         if event.sym == tcod.event.KeySym.t:
             self.engine.open_mark_target_selector()
             return

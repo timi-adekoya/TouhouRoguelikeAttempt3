@@ -93,6 +93,7 @@
     ],
     "enchant_slots": 1,
     "ammo_type": "arrow",
+    "range": 6,
     "damage_formula": {
       "base": 2,
       "scaling": {

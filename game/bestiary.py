@@ -101,7 +101,9 @@ def populate_dungeon_floor(spawn_points: List[Tuple[int, int]], level: int = 1) 
     return [spawn_random_monster(x, y, level=level) for x, y in spawn_points]
 
 
-GENERIC_ROOM_LOOT = ["healing_potion", "iron_sword", "leather_cap", "leather_vest", "arrow_bundle", "wand_of_sparks"]
+GENERIC_ROOM_LOOT = [
+    "healing_potion", "iron_sword", "hunting_bow", "leather_cap", "leather_vest", "arrow_bundle", "wand_of_sparks",
+]
 ROOM_LOOT_CHANCE = 0.15
 
 
