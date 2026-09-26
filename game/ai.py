@@ -251,12 +251,15 @@ def move_toward(engine: "Engine", entity: Entity, tx: int, ty: int, stop_short: 
 
 
 def find_ready_ranged_skill(
-    entity: Entity, target: Entity, distance: int, exclude: Collection[str] = ()
+    engine: "Engine", entity: Entity, target: Entity, distance: int, exclude: Collection[str] = ()
 ) -> Optional[Tuple[SkillInstance, targeting.ActivationTargetingDef]]:
     """First active skill this entity could legally fire at `target` right
-    now: off cooldown, affordable, and `target` within its first stage's
-    range. Used by every AI tier to decide "cast" vs. "melee" vs. "chase".
-    `exclude` skips skill ids the caller doesn't want used yet."""
+    now: off cooldown, affordable, any status prerequisite met on `target`,
+    and `target` within its first stage's range. Used by every AI tier to
+    decide "cast" vs. "melee" vs. "chase". `exclude` skips skill ids the
+    caller doesn't want used yet."""
+    from game.effects import status_requirements_met  # deferred: avoids a module cycle with effects.py
+
     if entity.skill_book is None:
         return None
     for instance in entity.skill_book.by_category(CATEGORY_ACTIVE):
@@ -264,6 +267,8 @@ def find_ready_ranged_skill(
             continue
         skill = instance.resolved
         if not instance.ready or not can_pay(entity, skill.cost) or not skill.activation_targeting:
+            continue
+        if not status_requirements_met(engine, skill, target):
             continue
         stage = skill.activation_targeting[0]
         if stage.range_shape == "self":
@@ -311,7 +316,7 @@ def choose_attack(
     then a ready offensive item, then a ranged weapon shot, then melee if
     adjacent. None if nothing applies (out of range and nothing reaches)."""
     distance = chebyshev(entity, target)
-    ranged = find_ready_ranged_skill(entity, target, distance, exclude_skills)
+    ranged = find_ready_ranged_skill(engine, entity, target, distance, exclude_skills)
     if ranged is not None:
         instance, stage = ranged
         targets = targeting.resolve_targets(engine, entity, stage, (target.x, target.y))
@@ -556,6 +561,10 @@ class BossController:
             return None
         skill = instance.resolved
         if not can_pay(entity, skill.cost) or not skill.activation_targeting:
+            return None
+        from game.effects import status_requirements_met  # deferred: avoids a module cycle with effects.py
+
+        if not status_requirements_met(engine, skill, target):
             return None
         stage = skill.activation_targeting[0]
 

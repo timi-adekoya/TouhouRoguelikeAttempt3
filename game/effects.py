@@ -99,10 +99,7 @@ def _instant_damage_heal(engine, ctx, caster, tp, effect):
         requires_status = effect.params.get("requires_status")
         stack_multiplier = 1
         if requires_status:
-            match = next(
-                (t for t in engine.timed_effects if t.kind == "status" and t.target is tp.entity and t.payload.get("status") == requires_status["status"]),
-                None,
-            )
+            match = find_status(engine, tp.entity, requires_status["status"])
             min_stacks = requires_status.get("min_stacks", 1)
             if match is None or match.stacks < min_stacks:
                 engine.message_log.add_message(
@@ -521,6 +518,27 @@ def _forced_movement(engine, ctx, caster, tp, effect):
 
     if victim is engine.player:
         engine.update_camera()
+
+
+def find_status(engine: "Engine", entity: Optional[Entity], status: str) -> Optional[TimedEffectInstance]:
+    return next(
+        (t for t in engine.timed_effects if t.kind == "status" and t.target is entity and t.payload.get("status") == status),
+        None,
+    )
+
+
+def status_requirements_met(engine: "Engine", skill, target: Optional[Entity]) -> bool:
+    """Whether every `requires_status` gate on `skill`'s effects (e.g. Grudge
+    Detonation needing 5 Grudge stacks) is satisfied on `target` right now —
+    lets AI skip a cast that would just fizzle."""
+    for effect in skill.effects:
+        requirement = (getattr(effect, "params", None) or {}).get("requires_status")
+        if not requirement:
+            continue
+        match = find_status(engine, target, requirement["status"])
+        if match is None or match.stacks < requirement.get("min_stacks", 1):
+            return False
+    return True
 
 
 def has_status(engine: "Engine", entity: Entity, status: str) -> bool:
