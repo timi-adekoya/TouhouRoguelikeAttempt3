@@ -72,18 +72,6 @@
     ]
   },
   {
-    "upgrade_id": "fireball_burn_1",
-    "skill_id": "fireball",
-    "requires_level": 9,
-    "ops": [
-      {
-        "op": "add",
-        "path": "effects[1].params.amount",
-        "value": 2
-      }
-    ]
-  },
-  {
     "upgrade_id": "frost_lance_slow_1",
     "skill_id": "frost_lance",
     "requires_level": 9,
