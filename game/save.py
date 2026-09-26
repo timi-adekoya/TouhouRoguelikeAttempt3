@@ -17,7 +17,7 @@ from components.progression import ClassProgress, Progression
 from components.skills import SkillBook, SkillInstance
 from components.stats import Attributes, Stat, StatBlock
 from game import location_data, tile_types
-from game.ai import BehaviorTreeController, FSMController, UtilityAIController
+from game.ai import BehaviorTreeController, BossController, FSMController, UtilityAIController
 from game.casting import ChargeState
 from game.effects import TimedEffectInstance
 from game.entity import Entity
@@ -601,6 +601,11 @@ def apply_engine_state(engine: "Engine", data: Dict[str, Any]) -> None:
     pending_boss_index = data.get("pending_boss_index")
     engine.pending_boss = entities[pending_boss_index] if pending_boss_index is not None else None
     engine.pending_boss_id = data.get("pending_boss_id")
+    # BossController isn't serialized; rebuild it from the boss def. Unlocked
+    # phases re-derive from current HP on its next decide().
+    if engine.pending_boss is not None and engine.pending_boss.ai is None and engine.pending_boss_id:
+        boss_def = location_data.boss(engine.pending_boss_id)
+        engine.pending_boss.ai = BossController([(p.hp_fraction, p.skill_id) for p in boss_def.phases])
     knowledge = data.get("knowledge", {"locations": [], "bosses": [], "recruited_bosses": []})
     engine.knowledge = {
         "locations": set(knowledge.get("locations", [])),

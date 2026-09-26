@@ -5,7 +5,7 @@ import numpy as np
 import tcod.los
 import tcod.path
 from enum import Enum, auto
-from typing import TYPE_CHECKING, Callable, List, Optional, Tuple
+from typing import TYPE_CHECKING, Callable, Collection, List, Optional, Tuple
 
 from components.items import EquippableDef, UsableDef, WeaponDef, evaluate_formula
 from components.skills import CATEGORY_ACTIVE, SkillInstance
@@ -251,14 +251,17 @@ def move_toward(engine: "Engine", entity: Entity, tx: int, ty: int, stop_short: 
 
 
 def find_ready_ranged_skill(
-    entity: Entity, target: Entity, distance: int
+    entity: Entity, target: Entity, distance: int, exclude: Collection[str] = ()
 ) -> Optional[Tuple[SkillInstance, targeting.ActivationTargetingDef]]:
     """First active skill this entity could legally fire at `target` right
     now: off cooldown, affordable, and `target` within its first stage's
-    range. Used by every AI tier to decide "cast" vs. "melee" vs. "chase"."""
+    range. Used by every AI tier to decide "cast" vs. "melee" vs. "chase".
+    `exclude` skips skill ids the caller doesn't want used yet."""
     if entity.skill_book is None:
         return None
     for instance in entity.skill_book.by_category(CATEGORY_ACTIVE):
+        if instance.def_id in exclude:
+            continue
         skill = instance.resolved
         if not instance.ready or not can_pay(entity, skill.cost) or not skill.activation_targeting:
             continue
@@ -301,12 +304,14 @@ def find_usable_damage_item(
     return None
 
 
-def choose_attack(engine: "Engine", entity: Entity, target: Entity) -> Optional[Action]:
+def choose_attack(
+    engine: "Engine", entity: Entity, target: Entity, exclude_skills: Collection[str] = ()
+) -> Optional[Action]:
     """Best available way to hurt `target` right now: a ready ranged skill,
     then a ready offensive item, then a ranged weapon shot, then melee if
     adjacent. None if nothing applies (out of range and nothing reaches)."""
     distance = chebyshev(entity, target)
-    ranged = find_ready_ranged_skill(entity, target, distance)
+    ranged = find_ready_ranged_skill(entity, target, distance, exclude_skills)
     if ranged is not None:
         instance, stage = ranged
         targets = targeting.resolve_targets(engine, entity, stage, (target.x, target.y))
@@ -515,7 +520,10 @@ class BossController:
             if phase_attack is not None:
                 return phase_attack
 
-        attack = choose_attack(engine, entity, target)
+        # Phase spellcards sit in the skill book from spawn, so they must be
+        # kept out of the generic picker until their phase unlocks them.
+        locked = {skill_id for _, skill_id in self.phases if skill_id not in self.unlocked_skill_ids}
+        attack = choose_attack(engine, entity, target, exclude_skills=locked)
         if attack is not None:
             return attack
 
