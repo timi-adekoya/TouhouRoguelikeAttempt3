@@ -12,7 +12,7 @@ from game.entity import Entity
 if TYPE_CHECKING:
     from game.engine import Engine
 
-UNARMED_DAMAGE = 5
+UNARMED_DAMAGE = 2
 UNARMED_NAME = "an unarmed strike"
 
 # Recognized element tags — reused directly as skill/weapon `tags` entries
