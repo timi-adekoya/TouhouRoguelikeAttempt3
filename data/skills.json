@@ -74,6 +74,10 @@
             "scaling": {
               "technique": 0.005
             }
+          },
+          "weapon_scaling": {
+            "percent": 100,
+            "weapon_tag": "melee"
           }
         },
         "priority": 10
@@ -4590,6 +4594,10 @@
             "requires_buff_source": "bullseye",
             "crit_rate_bonus": 0.25,
             "guarantees_hit": true
+          },
+          "weapon_scaling": {
+            "percent": 100,
+            "weapon_tag": "ranged"
           }
         },
         "priority": 10

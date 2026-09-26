@@ -68,7 +68,7 @@
       "spirit": 4,
       "technique": 1
     },
-    "weapon": "fairy_fists",
+    "weapon": "fairy_danmaku",
     "loot_gold_range": [
       2,
       6
@@ -119,7 +119,7 @@
     "attributes": {
       "spirit": 5
     },
-    "weapon": "fairy_fists",
+    "weapon": "fairy_danmaku",
     "loot_gold_range": [
       2,
       6
@@ -145,7 +145,7 @@
       "spirit": 2,
       "vitality": 2
     },
-    "weapon": "fairy_fists",
+    "weapon": "fairy_danmaku",
     "loot_gold_range": [
       6,
       12
@@ -170,7 +170,7 @@
     "attributes": {
       "speed": 3
     },
-    "weapon": null,
+    "weapon": "tackle",
     "loot_gold_range": [
       2,
       4
@@ -194,7 +194,7 @@
     "attributes": {
       "speed": 3
     },
-    "weapon": null,
+    "weapon": "tackle",
     "loot_gold_range": [
       2,
       4

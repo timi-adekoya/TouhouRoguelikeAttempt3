@@ -130,6 +130,23 @@ def _apply_crit_bonuses(engine: "Engine", attacker: Optional[Entity], target: En
     return bonus
 
 
+def weapon_contribution(caster: Entity, spec: Optional[dict]) -> float:
+    """Extra skill damage from the caster's equipped weapon (or natural
+    attack): `spec["percent"]` of the weapon's own damage formula, only if
+    the weapon carries `spec["weapon_tag"]` when one is given (so Aimed Shot
+    only benefits from a ranged weapon, Slash from a melee one). The weapon's
+    crit formulas and ammo aren't involved — the skill's own crit applies."""
+    if not spec or caster.stats is None:
+        return 0.0
+    weapon = equipment.equipped_weapon(caster)
+    if weapon is None:
+        return 0.0
+    tag = spec.get("weapon_tag")
+    if tag and tag not in weapon.tags:
+        return 0.0
+    return evaluate_formula(weapon.damage_formula, caster.stats.attributes) * spec.get("percent", 100) / 100
+
+
 def _has_status(engine: "Engine", entity: Optional[Entity], status: str) -> bool:
     # Local duplicate of effects.has_status — effects.py already imports
     # from combat.py, so importing back would create a cycle.
@@ -405,6 +422,7 @@ def resolve_skill_damage(
         return None
 
     damage = evaluate_formula(damage_formula, caster.stats.attributes)
+    damage += weapon_contribution(caster, params.get("weapon_scaling"))
     crit_rate_formula = params.get("crit_rate_formula", {})
     crit_damage_formula = params.get("crit_damage_formula", {"base": 1.5})
     conditional_crit_bonus = conditional.get("crit_rate_bonus", 0.0) if conditional_active else 0.0

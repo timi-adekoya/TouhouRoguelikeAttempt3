@@ -37,6 +37,11 @@ def skill_lines(instance: SkillInstance) -> List[str]:
         lines.append(f"Cooldown: {skill.cooldown} turns")
     if skill.tags:
         lines.append("Tags: " + ", ".join(skill.tags))
+    for effect in skill.effects:
+        spec = (getattr(effect, "params", None) or {}).get("weapon_scaling")
+        if spec:
+            tag = spec.get("weapon_tag")
+            lines.append(f"+{spec.get('percent', 100)}% weapon damage" + (f" ({tag} weapons)" if tag else ""))
     lines.append(f"Rarity: {skill.rarity}")
     if skill.tree is not None:
         lines.append(f"Self-upgrades claimed: {len(instance.claimed_nodes)}/{len(skill.tree.nodes)}")
@@ -58,6 +63,8 @@ def item_lines(instance: ItemInstance) -> List[str]:
         lines.append(f"Damage formula: {_format_formula(definition.damage_formula)}")
         lines.append(f"Crit rate formula: {_format_formula(definition.crit_rate_formula)}")
         lines.append(f"Crit damage formula: {_format_formula(definition.crit_damage_formula)}")
+        if definition.is_ranged:
+            lines.append(f"Range: {definition.range} (fire with F)")
         if definition.mp_cost:
             lines.append(f"MP cost per attack: {definition.mp_cost}")
         if definition.ammo_type:
