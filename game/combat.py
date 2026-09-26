@@ -130,6 +130,10 @@ def _apply_crit_bonuses(engine: "Engine", attacker: Optional[Entity], target: En
     return bonus
 
 
+def _round_half_up(value: float) -> int:
+    return int(value + 0.5)
+
+
 def weapon_contribution(caster: Entity, spec: Optional[dict]) -> float:
     """Extra skill damage from the caster's equipped weapon (or natural
     attack): `spec["percent"]` of the weapon's own damage formula, only if
@@ -290,9 +294,11 @@ def _award_kill_exp(engine: "Engine", source: Optional[Entity], target: Entity, 
 
 def resolve_weapon_attack(
     engine: "Engine", attacker: Entity, target: Entity, *, ranged: bool = False
-) -> Optional[Tuple[int, str]]:
-    """(damage, cause) a mainhand weapon attack deals, after a hit roll,
-    crit roll, and the target's armor/elemental resistance. Returns None if
+) -> Optional[Tuple[int, str, int]]:
+    """(damage, cause, pre_defense) a mainhand weapon attack deals, after a
+    hit roll, crit roll, and the target's armor/elemental resistance;
+    `pre_defense` is the hit before armor (what Spell Reflection bounces).
+    Returns None if
     the attack can't happen (out of ammo on a ranged shot, insufficient MP,
     or a miss) — the turn is still consumed either way. A melee bump with an
     ammo weapon that's out of ammo falls back to an unarmed strike."""
@@ -374,12 +380,12 @@ def resolve_weapon_attack(
     defense = equipment.total_defense(target, magic=is_magic)
     raw = max(1, int(damage) - defense)
     final = int(raw * elemental_multiplier(target, weapon_tags))
-    return max(0, final), cause
+    return max(0, final), cause, int(damage)
 
 
 def resolve_skill_damage(
     engine: "Engine", caster: Optional[Entity], target: Entity, params: dict, tags: list
-) -> Optional[int]:
+) -> Optional[Tuple[int, int]]:
     """A damage-dealing skill effect that's been given its own
     damage_formula plays by the same rules a weapon attack does: a hit roll,
     scales off the caster's attributes, rolls its own (typically
@@ -387,10 +393,12 @@ def resolve_skill_damage(
     resistance (magic_defense if tagged "magic"). Skills without a
     damage_formula just use their flat `amount` and skip the hit roll
     entirely — content that hasn't been converted yet keeps working
-    unchanged. Returns None on a miss (distinct from 0 damage)."""
+    unchanged. Returns (damage, pre_defense), or None on a miss (distinct
+    from 0 damage)."""
     damage_formula = params.get("damage_formula")
     if damage_formula is None or caster is None or caster.stats is None:
-        return params.get("amount", 0)
+        amount = params.get("amount", 0)
+        return amount, amount
 
     stealth_bonus = _consume_stealth_bonus(engine, caster)
     evasion_stack_bonus = _consume_evasion_stacks(caster)
@@ -496,7 +504,7 @@ def resolve_skill_damage(
 
     defense = equipment.total_defense(target, magic="magic" in tags)
     raw = max(1, int(damage) - defense)
-    return max(0, int(raw * elemental_multiplier(target, tags)))
+    return max(0, int(raw * elemental_multiplier(target, tags))), int(damage)
 
 
 def apply_damage(
@@ -508,6 +516,7 @@ def apply_damage(
     cause: Optional[str] = None,
     periodic: bool = False,
     tags: Optional[list] = None,
+    pre_defense: Optional[int] = None,
     _reflected: bool = False,
 ) -> int:
     """The one path all damage takes: HP loss, events, species exp for the
@@ -519,7 +528,9 @@ def apply_damage(
     `periodic` phrases DoT ticks as passive suffering rather than an active
     hit, since nothing is "swinging" on those turns. `tags` (e.g. "melee")
     lets a source-side on-hit effect (lifesteal) key off what kind of hit
-    this was — DoT ticks never pass tags, so they never proc it. `_reflected`
+    this was — DoT ticks never pass tags, so they never proc it.
+    `pre_defense` is the hit before armor, used by Spell Reflection
+    (defaults to `amount` when the caller has nothing earlier). `_reflected`
     marks damage that's already a Warding reflection bounce, so it can't
     itself trigger another reflection back and forth forever.
     """
@@ -539,9 +550,9 @@ def apply_damage(
         return 0
 
     # Warding (Mage) capstone: toggleable — bounces a portion of the RAW
-    # incoming hit back at whoever dealt it, before any of the target's own
-    # mitigation (Endurance, Reckless Stance's downside, Mana Shield, Ward)
-    # touches it. Off by default (0%); flips on/off via toggle_passive.
+    # incoming hit (before armor and before any of the target's own
+    # mitigation: Endurance, Reckless Stance, Mana Shield, Ward) back at
+    # whoever dealt it.
     reflect_percent = target.stats.modifiers.get("reflect_percent", 0.0)
     if (
         not periodic
@@ -551,9 +562,10 @@ def apply_damage(
         and source is not target
         and source.stats is not None
     ):
-        reflected_amount = int(amount * reflect_percent / 100)
+        base = pre_defense if pre_defense is not None else amount
+        reflected_amount = _round_half_up(base * reflect_percent / 100)
         if reflected_amount > 0:
-            apply_damage(engine, target, source, reflected_amount, cause="reflected damage", _reflected=True)
+            apply_damage(engine, target, source, reflected_amount, cause="Spell Reflection", _reflected=True)
 
     # Endurance (Warrior): mild, HP-scaling damage reduction — the lower
     # the target's own HP, the more of any incoming hit gets shaved off.
@@ -578,10 +590,13 @@ def apply_damage(
     # the ward proc below) absorbs before anything else, including Mana
     # Shield — it's a shield, not a resource conversion.
     temp_hp = target.stats.modifiers.get("temp_hp_current", 0)
-    if temp_hp > 0:
+    if temp_hp > 0 and amount > 0:
         temp_absorbed = min(temp_hp, amount)
         target.stats.modifiers["temp_hp_current"] = temp_hp - temp_absorbed
         amount -= temp_absorbed
+        engine.message_log.add_message(
+            f"{target.name}'s Warding Shroud absorbs {temp_absorbed} damage.", color=message_log.INFO_COLOR
+        )
 
     # Mana Shield (Mage): while active, a percentage of incoming damage
     # comes out of MP instead of HP, capped by whatever MP is actually
@@ -620,8 +635,11 @@ def apply_damage(
     if not periodic and ward_percent > 0 and dealt > 0:
         from game.effects import TimedEffectInstance  # deferred: avoids a module cycle with effects.py
 
-        shield_gain = int(dealt * ward_percent / 100)
+        shield_gain = _round_half_up(dealt * ward_percent / 100)
         if shield_gain > 0:
+            engine.message_log.add_message(
+                f"{target.name}'s Warding Shroud banks {shield_gain} temporary HP.", color=message_log.INFO_COLOR
+            )
             target.stats.modifiers["temp_hp_current"] = (
                 target.stats.modifiers.get("temp_hp_current", 0) + shield_gain
             )

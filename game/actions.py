@@ -112,8 +112,10 @@ class MeleeAttackAction(Action):
             return
         result = combat.resolve_weapon_attack(engine, self.entity, self.target)
         if result is not None:
-            damage, cause = result
-            combat.apply_damage(engine, self.entity, self.target, damage, cause=cause, tags=["melee"])
+            damage, cause, pre_defense = result
+            combat.apply_damage(
+                engine, self.entity, self.target, damage, cause=cause, tags=["melee"], pre_defense=pre_defense
+            )
 
 
 class RangedAttackAction(Action):
@@ -129,8 +131,10 @@ class RangedAttackAction(Action):
             return
         result = combat.resolve_weapon_attack(engine, self.entity, self.target, ranged=True)
         if result is not None:
-            damage, cause = result
-            combat.apply_damage(engine, self.entity, self.target, damage, cause=cause, tags=["ranged"])
+            damage, cause, pre_defense = result
+            combat.apply_damage(
+                engine, self.entity, self.target, damage, cause=cause, tags=["ranged"], pre_defense=pre_defense
+            )
 
 
 class CastSkillAction(Action):
