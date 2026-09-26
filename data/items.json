@@ -13,7 +13,7 @@
     "damage_formula": {
       "base": 1,
       "scaling": {
-        "spirit": 0.25
+        "spirit": 0.4
       }
     },
     "crit_rate_formula": {
@@ -36,9 +36,9 @@
     "enchant_slots": 0,
     "range": 3,
     "damage_formula": {
-      "base": 1.5,
+      "base": 1,
       "scaling": {
-        "spirit": 0.15
+        "spirit": 0.3
       }
     },
     "crit_rate_formula": {
@@ -62,7 +62,7 @@
     "damage_formula": {
       "base": 1,
       "scaling": {
-        "speed": 0.34
+        "speed": 0.45
       }
     },
     "crit_rate_formula": {
